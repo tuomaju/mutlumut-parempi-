@@ -1,11 +1,17 @@
 <?php
+session_start();
+include_once ('config/config.php');
+include_once ('functions.php');
+
 $target_dir = "posts/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$target_file = $target_dir . basename($_FILES["upload"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
+echo '1';
 if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    echo '2';
+    $check = getimagesize($_FILES["upload"]["tmp_name"]);
     if($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
@@ -20,7 +26,7 @@ if (file_exists($target_file)) {
     $uploadOk = 0;
 }
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
+if ($_FILES["upload"]["size"] > 500000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
@@ -35,10 +41,15 @@ if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    if (move_uploaded_file($_FILES["upload"]["tmp_name"], $target_file)) {
+        echo "The file ". basename( $_FILES["upload"]["name"]). " has been uploaded.";
+        makePost($target_file, $_POST["emoji1"], $_POST["emoji2"], $_POST["emoji3"], $_POST["emoji4"], $_SESSION['profileId'], $DBH);
+        redirect('tosiIndex.php');
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
 }
+
+
+
 ?>

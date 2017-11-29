@@ -4,7 +4,7 @@ include_once ('config/config.php');
 include_once ('functions.php');
 echo '';
 
-editProfile($_SESSION['userId'], 'img', 'profile_images/placeholder4.jpg', $DBH);
+editProfile($_SESSION['userId'], 'img', 'profile_images/placeholder.jpg', $DBH);
 /*
  * js
  * button.onClick= ()=>{

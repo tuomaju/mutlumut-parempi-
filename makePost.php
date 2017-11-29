@@ -12,11 +12,17 @@ session_start();
 ?>
 
 <fieldset>
-    <form action="postConfirm.php" method="post">
-        <input type="text" name="datapost[emoji]">
+    <form action="postConfirm.php" method="post" enctype="multipart/form-data">
+        <input placeholder="sos" type="text" name="emoji1">
         <br>
-        <input type="file" name="datapost[audio]">
+        <input placeholder="sos" type="text" name="emoji2">
         <br>
-        <input type="submit" value="Lähetä">
+        <input placeholder="sos" type="text" name="emoji3">
+        <br>
+        <input placeholder="sss" type="text" name="emoji4">
+        <br>
+        <input type="file" name="upload">
+        <br>
+        <input type="submit" value="Lähetä" name="submit">
     </form>
 </fieldset>

@@ -25,7 +25,7 @@ if($_SESSION['kirjautunut']=='yes'){
     echo '<br>';
     echo 'Sähköposti: '.$_SESSION['email'];
     echo '<br>';
-    echo '<a href="editProfile.php"><img src="' . getProfile($_SESSION['userId'], $DBH)->img .  '" ></a>';      // hyvä funktio :) tekee hyvin =)
+    echo '<a href="editProfile.php"><img src="' . getProfile($_SESSION['profileId'], $DBH)->img .  '" ></a>';      // hyvä funktio :) tekee hyvin =)
     echo $_SESSION['userId'];
     echo $_SESSION['profileId'];
     echo('<button><a href="logout.php">Kirjaudu ulos</a></button>');
@@ -47,17 +47,24 @@ if($_SESSION['kirjautunut']=='yes'){
         <li>
             <?php
                 $profileId = $_SESSION['profileId'];
-                //makePost('posts/testi1.mp3', '🍑', '🍑','🍑','🍑', $profileId, $DBH); tää toimii ;^) (ihan oikeesti ( ei oo läppä ))
-                $muuttuva = getPost(5, $DBH)->emoji1;
-                echo json_decode(''.$muuttuva.'');  //tehään tästä funktio tästä decodauksesta!!
+               // makePost('posts/testi1.mp3', '😂', '🔥','🐻','🍑', $profileId, $DBH); //tää toimii ;^) (ihan oikeesti ( ei oo läppä ))
+                echo decodeEmoji(5, 'emoji1',$DBH);
             ?>
         </li>
         <li>
             <?php
-                $muuttuva = getPost(5, $DBH)->emoji2;
-                echo json_decode(''.$muuttuva.'');
+                echo '<img src=" '.getPost(8, $DBH)->audio.'">';
+                echo decodeEmoji(8, 'emoji1', $DBH);
+                echo decodeEmoji(8, 'emoji4', $DBH);
+                echo decodeEmoji(8, 'emoji3', $DBH);
+                echo decodeEmoji(8, 'emoji2', $DBH);
             ?>
         </li>
+        <?php
+            showPosts(getMaxId($DBH)[0], $DBH);
+            //var_dump(getMaxId($DBH));
+            //echo getMaxId($DBH)[0];
+        ?>
     </ul>
 </main>
 

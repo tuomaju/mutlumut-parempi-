@@ -2,8 +2,7 @@
 
 session_start();
 require_once 'config/config.php';
-echo 'jeejee';
+echo 'Hei hei =)';
 session_destroy();
-
 redirect('index.php');
 ?>

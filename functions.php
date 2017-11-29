@@ -9,17 +9,18 @@ session_start();
 //require_once('config/config.php');
 //SSLon();
 
+
 /**
  * @param $profileId
  * @param $DBH
  * @return mixed
  * Palauttaa profiilin tiedot
  */
-function getProfile($profileId, $DBH){
+function getProfile($profileId, $DBH){   //profileid/userid???? mikä vitun juttu
     try {
         $userdata = array('profileId' => $profileId);
 
-        $STH = $DBH->prepare("SELECT * FROM p_profile WHERE profileUser = '$profileId'");
+        $STH = $DBH->prepare("SELECT * FROM p_profile WHERE profileId= '$profileId'");
         $STH->execute($userdata);
         $STH->setFetchMode(PDO::FETCH_OBJ);
         $row = $STH->fetch();
@@ -38,7 +39,7 @@ function getProfile($profileId, $DBH){
  * @param $DBH
  * Vaihtaa profiiliin arvon value sarakkeeseen column
  */
-function editProfile($profileId, $column, $value,  $DBH){
+function editProfile($profileId, $column, $value,  $DBH){  //profileid/userid???? mikä vitun juttu :DDDDDDDDDDddddddddddDDDDDDDDDD
     try {
        // $userdata = array('profileId' => $profileId);
 
@@ -50,6 +51,14 @@ function editProfile($profileId, $column, $value,  $DBH){
         file_put_contents('log/DBErrors.txt', 'Login: '.$e->getMessage()."\n", FILE_APPEND);
     }
 }
+
+
+/**
+ * @param $postId
+ * @param $DBH
+ * @return mixed
+ * hakee postista kaiken
+ */
 function getPost($postId, $DBH){
     try {
         $userdata = array('postId' => $postId);
@@ -66,6 +75,34 @@ function getPost($postId, $DBH){
     }
 }
 
+
+
+/**
+ * @param $emoji
+ * @return mixed
+ * +1 backslash
+ */
+function encodeEmoji($emoji){
+    $placeholder= json_encode($emoji);
+    return str_replace('\\','\\\\',$placeholder);
+}
+
+
+/**
+ * @param $postId
+ * @param $emoji
+ * @param $DBH
+ * @return mixed
+ * hakee ja palauttaa emojin
+ */
+function decodeEmoji($postId, $emoji, $DBH){
+    $muuttuva = getPost($postId, $DBH)->$emoji;
+    return json_decode(''.$muuttuva.'');
+}
+
+
+
+
 /**
  * @param $audio
  * @param $emoji1
@@ -79,17 +116,11 @@ function getPost($postId, $DBH){
 function makePost($audio, $emoji1, $emoji2, $emoji3, $emoji4, $profileId, $DBH){
     try {
         // $userdata = array('profileId' => $profileId);
-        $emoji10= json_encode($emoji1);
-        $newEmoji1 = str_replace('\\','\\\\',$emoji10); // +1 backslash, että voi escapee
 
-        $emoji20= json_encode($emoji2);
-        $newEmoji2 = str_replace('\\','\\\\',$emoji20); // +1 backslash, että voi escapee
-
-        $emoji30= json_encode($emoji3);
-        $newEmoji3 = str_replace('\\','\\\\',$emoji30); // +1 backslash, että voi escapee
-
-        $emoji40= json_encode($emoji4);
-        $newEmoji4 = str_replace('\\','\\\\',$emoji40); // +1 backslash, että voi escapee
+        $newEmoji1 = encodeEmoji($emoji1);
+        $newEmoji2 = encodeEmoji($emoji2);
+        $newEmoji3 = encodeEmoji($emoji3);
+        $newEmoji4 = encodeEmoji($emoji4);
 
         $STH = $DBH->prepare("INSERT INTO p_post(
             audio,
@@ -120,6 +151,51 @@ function makePost($audio, $emoji1, $emoji2, $emoji3, $emoji4, $profileId, $DBH){
     }
 }
 
+/**
+ * @param $DBH
+ * @return mixed
+ * palauttaa isoimman
+ */
+function getMaxId($DBH){
+    $STH = $DBH->prepare("SELECT MAX(postId) FROM p_post");
+    $STH->execute();
+    $row = $STH->fetch();
+    return $row;
+}
+
+/**
+ * @param $luku
+ * @param $DBH
+ * Näyttää 20 uusinta postaukset
+ */
+function showPosts($luku, $DBH){
+        for ($j = $luku-20; $j <= $luku; $j++) {       //joku bittijuttu et tulee negatiiviset yli ??  VOIS kans järjestää post timella
+            if(getPost($j, $DBH)){
+                echo '<li>';
+                echo 'tiedosto: ' . getPost($j, $DBH)->audio;
+                echo '<br>';
+                echo decodeEmoji($j, 'emoji1', $DBH);
+                echo decodeEmoji($j, 'emoji2', $DBH);
+                echo decodeEmoji($j, 'emoji3', $DBH);
+                echo decodeEmoji($j, 'emoji4', $DBH);
+                echo '<br>';
+                echo 'j: ' . $j;
+                echo '<br>';
+                echo 'profile id: ' . getPost($j, $DBH)->postProfile;
+                $asd = getPost($j, $DBH)->postProfile;
+                echo '<br>';
+                echo 'user id' . getProfile($asd, $DBH)->profileUser;
+                echo '<br>';
+                echo 'post score: ' . getPost($j, $DBH)->score;
+                echo '<br>';
+                echo 'post time: ' . getPost($j, $DBH)->postTime;
+                echo '<br>';
+                echo '<img src="'. getProfile($asd, $DBH)->img .'">';
+                echo '</li>';
+
+        }
+    }
+}
 
 ?>
 

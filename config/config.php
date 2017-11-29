@@ -4,13 +4,13 @@ $pass = 'sannamysli';
 $host = 'mysql.metropolia.fi';
 $dbname = 'sannaluo';
 
-/*
-session_save_path('/home1-3/t/tuomaju/public_html/2.vuosi2.jakso/projekti/session.txt');
+
+session_save_path('/home1-3/t/tuomaju/public_html/2.vuosi2.jakso/projekti/session');
  ini_set('session.gc_probability', 1);
 // Cookie voimassa kunnes selain suljetaan eli myös sessio vanhenee silloin
 session_set_cookie_params ( 0, '/~tuomaju/2.vuosi2.jakso/projekti/' );
 session_start();
-*/
+
 
 try {
     $DBH = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);

@@ -171,6 +171,7 @@ function getMaxId($DBH){
 function showPosts($luku, $DBH){
         for ($j = $luku-20; $j <= $luku; $j++) {       //joku bittijuttu et tulee negatiiviset yli ??  VOIS kans järjestää post timella
             if(getPost($j, $DBH)){
+                echo '<br>';
                 echo '<li>';
                 echo 'tiedosto: ' . getPost($j, $DBH)->audio;
                 echo '<br>';
@@ -190,11 +191,35 @@ function showPosts($luku, $DBH){
                 echo '<br>';
                 echo 'post time: ' . getPost($j, $DBH)->postTime;
                 echo '<br>';
-                echo '<img src="'. getProfile($asd, $DBH)->img .'">';
+                echo '<img class="profileimg" src="'. getProfile($asd, $DBH)->img .'">';
+                echo '<br>';
+                echo '<a href="fullPost.php">Full post</a>';
                 echo '</li>';
+
 
         }
     }
+}
+
+function showPostsFull($postId, $DBH){
+    echo '<li>';
+    echo 'tiedosto: ' . getPost($postId, $DBH)->audio;
+    echo '<br>';
+    echo decodeEmoji($postId, 'emoji1', $DBH);
+    echo decodeEmoji($postId, 'emoji2', $DBH);
+    echo decodeEmoji($postId, 'emoji3', $DBH);
+    echo decodeEmoji($postId, 'emoji4', $DBH);
+    $profileId = getPost($postId, $DBH)->postProfile;
+    echo '<br>';
+    echo 'post score: ' . getPost($postId, $DBH)->score;
+    echo '<br>';
+    echo 'post time: ' . getPost($postId, $DBH)->postTime;
+    echo '<br>';
+    echo '<img src="'. getProfile($profileId, $DBH)->img .'">';
+    echo '<br>';
+    echo 'Profile name: ' . getProfile($profileId, $DBH)->profileName;
+    echo '</li>';
+
 }
 
 ?>

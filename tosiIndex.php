@@ -19,19 +19,12 @@ include_once ('config/config.php');
 </head>
 <body class="vihrea">
 <?php
-if($_SESSION['kirjautunut']=='yes'){
-    echo '<div>';
-    echo 'Käyttäjätunnus: '.$_SESSION['username'];
-    echo '<br>';
-    echo 'Sähköposti: '.$_SESSION['email'];
-    echo '<br>';
-    echo '<a href="editProfile.php"><img src="' . getProfile($_SESSION['profileId'], $DBH)->img .  '" ></a>';      // hyvä funktio :) tekee hyvin =)
-    echo $_SESSION['userId'];
-    echo $_SESSION['profileId'];
-    echo('<button><a href="logout.php">Kirjaudu ulos</a></button>');
-    echo '<br>';
-    echo('<button><a href="makePost.php">Lisää ääni</a></button>');
-    echo '</div>';
+    if($_SESSION['kirjautunut']=='yes'){
+        echo '<button><a href="editProfile.php">Muokkaa profiilia</a></button>';      // hyvä funktio :) tekee hyvin =)
+        echo '<br>';
+        echo('<button><a href="logout.php">Kirjaudu ulos</a></button>');
+        echo '<br>';
+        echo('<button><a href="makePost.php">Lisää ääni</a></button>');
 ?>
 <main>
     <ul id="posts">
@@ -53,7 +46,7 @@ if($_SESSION['kirjautunut']=='yes'){
         </li>
         <li>
             <?php
-                echo '<img src=" '.getPost(8, $DBH)->audio.'">';
+                echo '<img class="profileimg" src=" '.getPost(8, $DBH)->audio.'">';
                 echo decodeEmoji(8, 'emoji1', $DBH);
                 echo decodeEmoji(8, 'emoji4', $DBH);
                 echo decodeEmoji(8, 'emoji3', $DBH);
@@ -69,7 +62,7 @@ if($_SESSION['kirjautunut']=='yes'){
 </main>
 
 <?php
-}
+    }
 ?>
 
 </body>

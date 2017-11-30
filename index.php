@@ -16,22 +16,22 @@
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
-<body class="keltainen">
-    <header>
+<body class="keltainen indexbody">
+    <header class="indexheader">
         <h1>TERVETULOA</h1>
     </header>
-    <aside>
+    <aside class="indexaside">
     </aside>
-    <main>
+    <main class="indexmain">
         <form method="POST" action="loginConfirm.php" id="loginForm">
             <input type="text" name='username' placeholder="Käyttäjätunnus"><br>
             <input type="password" name='pwd' placeholder="Salasana"><br>
-            <input type="submit" name="loginButton" id="loginButton" value="Sisään">
+            <input class="btn" type="submit" name="loginButton" id="loginButton" value="Sisään">
             <br>
-            <a href="register.php">Haluutko vittu kuolla!?!??</a>
+            <a class="btn" href="register.php">Haluutko vittu kuolla!?!??</a>
         </form>
     </main>
-    <aside>
+    <aside class="indexaside">
     </aside>
 </body>
 </html>

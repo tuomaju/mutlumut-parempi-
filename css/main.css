@@ -56,22 +56,26 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-img{
+body {
+    font-size: 150%;
+}
+
+.profileimg{
     border-radius: 50%;
 }
 
 /*
 index
 */
-body{
+.indexbody{
     display: flex;
     flex-wrap: wrap;
 }
-header{
+.indexheader{
     width:100%;
     text-align: center;
 }
-main {
+.indexmain {
     display: flex;
     flex-wrap: wrap;
     background-color: #f9f6ed;
@@ -79,7 +83,7 @@ main {
     margin: 0;
     max-width:80%;
 }
-aside {
+.indexaside {
     max-width: 10%;
 }
 .keltainen{
@@ -105,6 +109,54 @@ aside {
     justify-content: center;
     flex-direction: column;
     text-align: center;
+}
+
+.editProfileLabel > .editProfileInput{ /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}
+.editProfileLabel > .editProfileInput + .editProfileImg{ /* IMAGE STYLES */
+    cursor:pointer;
+    border: 2px solid transparent;
+    width: 75px;
+    height: 75px;
+    transition: 0.33s;
+}
+.editProfileLabel > .editProfileInput:checked + .editProfileImg{ /* (RADIO CHECKED) IMAGE STYLES */
+    border:2px solid red;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+button , .btn{
+    background: #fcd229;
+    background-image: -webkit-linear-gradient(top, #fcd229, #e0b404);
+    background-image: -moz-linear-gradient(top, #fcd229, #e0b404);
+    background-image: -ms-linear-gradient(top, #fcd229, #e0b404);
+    background-image: -o-linear-gradient(top, #fcd229, #e0b404);
+    background-image: linear-gradient(to bottom, #fcd229, #e0b404);
+    -webkit-border-radius: 11;
+    -moz-border-radius: 11;
+    border-radius: 11px;
+    font-family: Arial;
+    color: #5c594f;
+    font-size: 26px;
+    padding: 10px 20px 10px 20px;
+    border: solid #d68803 3px;
+    text-decoration: none;
+}
+
+button:hover , .btn:hover {
+    background: #fca63c;
+    background-image: -webkit-linear-gradient(top, #fca63c, #d98134);
+    background-image: -moz-linear-gradient(top, #fca63c, #d98134);
+    background-image: -ms-linear-gradient(top, #fca63c, #d98134);
+    background-image: -o-linear-gradient(top, #fca63c, #d98134);
+    background-image: linear-gradient(to bottom, #fca63c, #d98134);
+    text-decoration: none;
 }
 
 /* ==========================================================================

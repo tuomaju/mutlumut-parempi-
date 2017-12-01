@@ -18,6 +18,9 @@ include_once ('config/config.php');
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body class="vihrea">
+<h1>
+    TERVETULOA:DD
+</h1>
 <?php
     if($_SESSION['kirjautunut']=='yes'){
         echo '<button><a href="editProfile.php">Muokkaa profiilia</a></button>';      // hyvä funktio :) tekee hyvin =)
@@ -54,7 +57,7 @@ include_once ('config/config.php');
             ?>
         </li>
         <?php
-            showPosts(getMaxId($DBH)[0], $DBH);
+            showPosts(getMaxId('postId', 'p_post', $DBH)[0], $DBH);
             //var_dump(getMaxId($DBH));
             //echo getMaxId($DBH)[0];
         ?>
@@ -62,6 +65,10 @@ include_once ('config/config.php');
 </main>
 
 <?php
+    }else{
+        echo'Olet kirjautunut ulos.';
+        echo('<button><a href="index.php">Etusivulle</a></button>');
+
     }
 ?>
 

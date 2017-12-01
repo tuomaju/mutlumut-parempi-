@@ -156,8 +156,8 @@ function makePost($audio, $emoji1, $emoji2, $emoji3, $emoji4, $profileId, $DBH){
  * @return mixed
  * palauttaa isoimman
  */
-function getMaxId($DBH){
-    $STH = $DBH->prepare("SELECT MAX(postId) FROM p_post");
+function getMaxId($id, $table, $DBH){
+    $STH = $DBH->prepare("SELECT MAX($id) FROM $table");
     $STH->execute();
     $row = $STH->fetch();
     return $row;
@@ -201,6 +201,12 @@ function showPosts($luku, $DBH){
     }
 }
 
+
+/**
+ * @param $postId
+ * @param $DBH
+ * näyttää kok kjutun
+ */
 function showPostsFull($postId, $DBH){
     echo '<li>';
     echo 'tiedosto: ' . getPost($postId, $DBH)->audio;
@@ -215,13 +221,75 @@ function showPostsFull($postId, $DBH){
     echo '<br>';
     echo 'post time: ' . getPost($postId, $DBH)->postTime;
     echo '<br>';
-    echo '<img src="'. getProfile($profileId, $DBH)->img .'">';
+    echo '<img class="profileimg" src="'. getProfile($profileId, $DBH)->img .'">';
     echo '<br>';
     echo 'Profile name: ' . getProfile($profileId, $DBH)->profileName;
     echo '</li>';
+}
+
+/**
+ * @param $comment
+ * @param $profileId
+ * @param $postId
+ * @param $DBH
+ * laittaa sisään (kommentin)
+ */
+function insertComment($comment, $profileId, $postId, $DBH){
+    try {
+        $STH = $DBH->prepare("INSERT INTO p_comment(
+          commentText,
+          commentPost,
+          commentProfile
+        )VALUES(
+          '$comment',
+          '$postId',
+          '$profileId'
+        );
+        ");
+        $STH->execute();
+
+    } catch(PDOException $e) {
+        echo "Profile edit error.";
+        file_put_contents('log/DBErrors.txt', 'Login: '.$e->getMessage()."\n", FILE_APPEND);
+    }
+}
+
+function getComment($postId, $commentId, $DBH){
+    try {
+        $userdata = array('postId' => $postId);
+
+        $STH = $DBH->prepare("SELECT * FROM p_comment WHERE commentPost = $postId AND commentId = $commentId");
+        $STH->execute($userdata);
+       // $STH->setFetchMode(PDO::FETCH_OBJ);
+        $row = $STH->fetch();
+        //var_dump( $row);
+        return $row;
+    } catch(PDOException $e) {
+        echo "Post get error";
+        file_put_contents('log/DBErrors.txt', 'Login: '.$e->getMessage()."\n", FILE_APPEND);
+    }
 
 }
 
+function showComments($postId, $DBH){
+    $luku = getMaxId('commentId' , 'p_comment' , $DBH)[0];
+    for ($i = 1; $i <= $luku; $i++) {       //joku bittijuttu et tulee negatiiviset yli ??  VOIS kans järjestää post timella
+        if (getComment($postId, $i, $DBH)) {
+            echo '<br>';
+            echo '<li>';
+            echo '<header class="commentHeader">';
+            echo '<img src=" '. getProfile(getComment($postId, $i, $DBH)[3], $DBH)->img . '">';
+            echo '<a href="google.com">'.getProfile(getComment($postId, $i, $DBH)[3], $DBH)->profileName. '</a> ';
+            echo getProfile(getComment($postId, $i, $DBH)[3], $DBH)->score;
+            echo '</header>';
+            echo '<p>' . getComment($postId, $i, $DBH)[1] . '</p>';
+
+            echo '</li>';
+
+
+        }
+    }
+}
 ?>
 
 

@@ -6,7 +6,7 @@ echo '';
 
 
 
-echo '<button><a href="tosiIndex.php">Valmis</a></button>';
+echo '<button><a href="tosiIndex.php">↩</a></button>';
 
 ?>
 

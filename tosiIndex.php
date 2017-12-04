@@ -2,6 +2,7 @@
 session_start();
 include_once('functions.php');
 include_once ('config/config.php');
+$_SESSION['search']='';
 ?>
 <!doctype html>
 <html class="no-js" lang="">
@@ -17,22 +18,27 @@ include_once ('config/config.php');
 
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-<body class="vihrea">
+<body class="tumma">
 <h1>
-    TERVETULOA:DD
+    tumultum
 </h1>
 <?php
     if($_SESSION['kirjautunut']=='yes'){
-        echo '<button><a href="editProfile.php">Muokkaa profiilia</a></button>';      // hyvä funktio :) tekee hyvin =)
+        echo '<button><a href="editProfile.php">👤</a></button>';      // hyvä funktio :) tekee hyvin =)
         echo '<br>';
-        echo('<button><a href="logout.php">Kirjaudu ulos</a></button>');
+        echo('<button><a href="logout.php">🚪</a></button>');
         echo '<br>';
-        echo('<button><a href="makePost.php">Lisää ääni</a></button>');
+        echo('<button><a href="makePost.php">🎙️</a></button>');
+        echo '<br>';
+        echo('<button><a href="search.php">🔍</a></button>');
+        echo '<br>';
+        echo('<button><a href="tosiIndex.php">♻</a></button>');
 ?>
 <main>
     <ul id="posts">
+        <!--
         <li>
-            <?php
+            <?php /*
             $mystring= json_encode(🍑);
             $newstring = str_replace('\\','\\\\',$mystring); // +1 backslash, että voi escapee
 
@@ -54,12 +60,17 @@ include_once ('config/config.php');
                 echo decodeEmoji(8, 'emoji4', $DBH);
                 echo decodeEmoji(8, 'emoji3', $DBH);
                 echo decodeEmoji(8, 'emoji2', $DBH);
-            ?>
+            */?>
         </li>
+        -->
         <?php
-            showPosts(getMaxId('postId', 'p_post', $DBH)[0], $DBH);
-            //var_dump(getMaxId($DBH));
-            //echo getMaxId($DBH)[0];
+            if($_POST['emojiSearch']){
+                $_SESSION['search'] = $_POST['emojiSearch'];
+            }
+            showPosts(getMaxId('postId', 'p_post', $DBH)[0],$_SESSION['search'], $DBH);
+            $_SESSION['search']='';
+                //var_dump(getMaxId($DBH));
+                //echo getMaxId($DBH)[0];
         ?>
     </ul>
 </main>
@@ -71,6 +82,6 @@ include_once ('config/config.php');
 
     }
 ?>
-
+<script src="js/main.js"></script>
 </body>
 </html>

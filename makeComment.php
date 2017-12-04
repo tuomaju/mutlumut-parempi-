@@ -10,7 +10,8 @@ include_once ('config/config.php');
 include_once ('functions.php');
 
 
-echo $_POST['comment'];
-insertComment($_POST['comment'], $_SESSION['profileId'], 11, $DBH);
+//echo $_POST['comment'];
+$Id = $_POST['postId'];
+insertComment($_POST['comment'], $_SESSION['profileId'], $Id, $DBH);
 redirect('fullPost.php');
 ?>

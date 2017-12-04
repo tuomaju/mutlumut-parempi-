@@ -26,25 +26,37 @@ include_once ('functions.php');
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body class="vihrea">
-<button><a href="tosiIndex.php">Takaisin</a></button>
+<button><a href="tosiIndex.php">↩</a></button>
 
 <?php
-showPostsFull(11, $DBH);
+    if($_POST['postId']) {
+        $_SESSION['postId'] = $_POST['postId'];
+    }
+    if(!$_SESSION['postId']){
+        redirect('tosiIndex.php');
+    }
+    showPostsFull($_SESSION['postId'], $DBH); //$Id -> SESSION id
+
 ?>
 <br>
 <hr>
 <br>
 <ul id="comments">
     <?php
-        showComments(11, $DBH);
+        showComments($_SESSION['postId'], $DBH);
     ?>
 </ul>
 
 <br>
 <hr>
-<textarea class="commentTextarea" name="comment" form="commentForm" cols="40" rows="5" placeholder="Sano jotain mukavaa :^)" maxlength="140">
-</textarea><!-- tähän regex -->
-<form id="commentForm" method="post" action="makeComment.php">
-    <input class="btn" type="submit" value="➠">
-</form>
+<?php
+    echo'<textarea class="commentTextarea" name="comment" form="commentForm" cols="40" rows="5" placeholder="Sano jotain mukavaa :^)" maxlength="140">';
+    echo'</textarea><!-- tähän regex -->';
+
+    echo'<form id="commentForm" method="post" action="makeComment.php">';
+        echo '<input type="text" hidden name="postId" value="'. $_SESSION['postId'] .'">';
+        echo' <input class="btn" type="submit" value="➠">';
+    echo'</form>';
+ ?>
+<script src="js/main.js"></script>
 </body>

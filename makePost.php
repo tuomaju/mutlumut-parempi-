@@ -17,7 +17,7 @@ session_start();
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body class="punainen">
-    <button><a href="tosiIndex.php"><-- Takaisin:)</a></button>
+    <button><a href="tosiIndex.php">↩</a></button>
     <fieldset>
 
         <form action="postConfirm.php" method="post" enctype="multipart/form-data">
@@ -29,7 +29,7 @@ session_start();
             <br>
             <input placeholder="sss" type="text" name="emoji4">
             <br>
-            <input type="file" name="upload">
+            <input type="file" accept="audio/*" capture="microphone" name="upload">
             <br>
             <input type="submit" value="Lähetä" name="submit">
         </form>

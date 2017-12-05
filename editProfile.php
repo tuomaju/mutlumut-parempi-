@@ -30,6 +30,8 @@ echo '<button><a href="tosiIndex.php">↩</a></button>';
     echo $_SESSION['userId'];
     echo $_SESSION['profileId'];
     echo '<br>';
+    echo 'My score : '.getProfileScore($_SESSION['profileId'], $DBH)[0];
+    echo '<br>';
     echo '</div>';
 
 ?>

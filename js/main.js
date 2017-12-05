@@ -26,3 +26,48 @@ playAudio = (audio, button, audioFile) =>{
     if (window.console && console.error("Error:" + e)) ;
   }
 };
+
+
+
+
+like = (str) => {
+  const xmlhttp = new XMLHttpRequest();
+  let posts = document.querySelectorAll('.posts');
+  console.log(posts);
+  for (let post of posts){
+    let postid = post.getAttribute('id');
+
+    let button = document.getElementById(postid).querySelector('.like');
+
+    button.onclick = (e) => {
+      button.innerHTML += '1';
+      xmlhttp.onreadystatechange = () => {
+        button.innerHTML += '2';
+        console.log(this.statusText);
+        if (this.readyState === 4 && this.status === 200){
+          button.innerHTML += this.responseText;
+          console.log('3' + this.responseText);
+        }
+
+      };
+      xmlhttp.open("GET", "like.php", true);
+      xmlhttp.send();
+    };
+
+    console.log(postid);
+  }
+
+
+};
+
+loadDoc = () => {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange =  () => {
+    if (this.readyState === 4 && this.status === 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
+      console.log(this.responseText);
+    }
+  };
+  xhttp.open("GET", "ajax_info.txt", true);
+  xhttp.send();
+};

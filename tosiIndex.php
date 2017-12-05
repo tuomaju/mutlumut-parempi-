@@ -72,6 +72,7 @@ $_SESSION['search']='';
                 //var_dump(getMaxId($DBH));
                 //echo getMaxId($DBH)[0];
         ?>
+        <p id="demo"> asd </p>
     </ul>
 </main>
 

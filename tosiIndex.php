@@ -24,15 +24,15 @@ $_SESSION['search']='';
 </h1>
 <?php
     if($_SESSION['kirjautunut']=='yes'){
-        echo '<button><a href="editProfile.php">👤</a></button>';      // hyvä funktio :) tekee hyvin =)
+        echo '<button class="btn"><a href="editProfile.php">👤</a></button>';      // hyvä funktio :) tekee hyvin =)
         echo '<br>';
-        echo('<button><a href="logout.php">🚪</a></button>');
+        echo('<button class="btn"><a href="logout.php">🚪</a></button>');
         echo '<br>';
-        echo('<button><a href="makePost.php">🎙️</a></button>');
+        echo('<button class="btn"><a href="makePost.php">🎙️</a></button>');
         echo '<br>';
-        echo('<button><a href="search.php">🔍</a></button>');
+        echo('<button class="btn"><a href="search.php">🔍</a></button>');
         echo '<br>';
-        echo('<button><a href="tosiIndex.php">♻</a></button>');
+        echo('<button class="btn"><a href="tosiIndex.php">♻</a></button>');
 ?>
 <main>
     <ul id="posts">

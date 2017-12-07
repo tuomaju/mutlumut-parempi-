@@ -26,7 +26,7 @@ include_once ('functions.php');
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body class="vihrea">
-<button><a href="tosiIndex.php">↩</a></button>
+<button class="btn"><a href="tosiIndex.php">↩</a></button>
 
 <?php
     if($_POST['postId']) {

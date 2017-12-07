@@ -11,6 +11,8 @@ include_once ('functions.php');
 
 $profileId = $_REQUEST['profileId'];
 
+echo'<link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">';
 echo '<div>';
 echo 'Nimi: ' . getProfile($profileId, $DBH)->profileName;
 echo '<br>';
@@ -18,8 +20,12 @@ echo '<img class="profileimg" src="' . getProfile($profileId, $DBH)->img .  '">'
 echo '<br>';
 echo 'Score : '.getProfileScore($profileId, $DBH)[0];
 echo '<br>';
-echo '<button class="btn"><a href="tosiIndex.php">go back</a></button>';
+echo '<button class="btn"><a href="tosiIndex.php">↩</a></button>';
 echo '</div>';
 
+echo '<ul>';
+    showProfilePosts($profileId ,$DBH);
+echo '</ul>';
 
 ?>
+

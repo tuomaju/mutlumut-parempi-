@@ -57,11 +57,26 @@ textarea {
    ========================================================================== */
 
 body {
+    font-family: 'Nunito', sans-serif;
     font-size: 150%;
+    color: #1C2021;
+    display: flex;
+    flex-wrap: wrap;
+}
+main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+}
+
+header{
+    width:100%;
+    text-align: center;
 }
 
 body h1{
-    color: #f5e9ad;
+    color: #FFF0D6;
 }
 
 .profileimg{
@@ -82,44 +97,29 @@ index
     text-align: center;
 }
 .indexmain {
+    border-radius: 39.5px;
     display: flex;
     flex-wrap: wrap;
     background-color: #f9f6ed;
     justify-content: center;
     margin: 0;
-    max-width:80%;
 }
-.indexaside {
+aside {
     max-width: 10%;
-}
-.keltainen{
-    background-color: #ffe283;
-}
-
-.sininen{
-    background-color: #75beff;
-}
-
-.punainen{
-    background-color: #ff857b;
-}
-
-.vihrea{
-    background-color: #69b895;
 }
 
 
 .tumma{
-    background-color: #562006;
+    background-color: #9E3E25;
 }
 
 
 .vaalea {
-    background-color: #f5e9ad;
+    background-color: #FFF0D6;
 }
 
 .oranssi {
-    background-color: #f2a91f;
+    background-color:#F0A830;
 }
 
 
@@ -127,10 +127,23 @@ index
     padding:0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: column;
     text-align: center;
 }
+
+#loginRegister{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row;
+    text-align: center;
+}
+
+#loginRegister a {
+    text-align: center;
+}
+
 .editProfileLabel{
 
     padding:0;
@@ -167,13 +180,13 @@ button a{
     -moz-border-radius: 50%;
     border-radius: 50%;
     color: #562006;
-    background: #f5e9ad;
-    border: solid #f2a91f 4px;
+    background: #FFF0D6;
+    border: solid #F0A830 4px;
     transition: background-color 0.33s;
 }
 
  .btn:hover {
-    background: #f2a91f;
+    background: #F0A830;
 }
 
 .adminBtn{
@@ -207,13 +220,16 @@ button a{
 }
 
 ul {
+    width: inherit;
+    margin:0;
+    padding: 0;
     list-style: none;
 }
 
+
 #comments li{
-    background-color: #ebded6;
     border-radius: 39.5px;
-    border: 4px solid darksalmon;
+    border: 4px solid transparent;
     max-width: 20em;
 
 }
@@ -224,7 +240,7 @@ ul {
 
 #comments li img{
 
-    border: 4px solid #ebded6;
+    border: 4px solid #FFF0D6;
     width: 63px;
     height: 63px;
     border-radius: 50%;
@@ -238,10 +254,12 @@ ul {
 }
 
 .posts {
-    border-radius: 39.5px;
+    border-radius: 43.5px;
+    border: 4px solid #F0A830;
+
 }
 
-.posts p{
+.emoji{
     font-size: 2rem;
     margin: 0.3rem;
     display: inline-block;
@@ -253,10 +271,76 @@ ul {
     border-radius: 5px;
 }
 
-.posts img {
-    border: 4px solid #f2a91f;
+.postHeader img {
+    border: 4px solid #F0A830;
 }
 
+.fullPostBox {
+    border-radius: 39.5px;
+}
+
+.indexform {
+    margin-top:2rem;
+    border-radius: 10px;
+    border: 2px solid #F0A830;
+}
+
+.indexbtn{
+    background-color:#F8F8F8 ;
+    font-size: 85%;
+    margin-bottom: 2rem;
+    width: 48%;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid #F0A830;
+}
+
+.postHeader{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.postTime{
+    height: inherit;
+    margin-right: 2rem;
+}
+
+.playbtn{
+    border:0px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 5rem;
+    height: 5rem;
+}
+
+.postMain{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.playbtnBox{
+    width: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.emojiContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width:40%;
+}
+
+.postLike{
+    width:30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column wrap;
+    align-content: stretch;
+}
 audio{
 
 }
@@ -266,17 +350,14 @@ audio{
    ========================================================================== */
 
 @media only screen and (min-width: 669px) {
-    body {
-        max-width: 60em;
-        margin: auto;
-    }
+
 
     main {
         width: 80%;
     }
 
     aside {
-        width: 20%;
+        width: 10%;
     }
 
 }

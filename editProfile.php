@@ -15,6 +15,7 @@ echo '<button class="btn"><a href="tosiIndex.php">↩</a></button>';
 <head>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:600" rel="stylesheet">
 </head>
 <body class="sininen">
 

@@ -22,41 +22,47 @@ include_once ('functions.php');
 
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
-
+    <link href="https://fonts.googleapis.com/css?family=Nunito:600" rel="stylesheet">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-<body class="vihrea">
-<button class="btn"><a href="tosiIndex.php">↩</a></button>
-
-<?php
-    if($_POST['postId']) {
-        $_SESSION['postId'] = $_POST['postId'];
-    }
-    if(!$_SESSION['postId']){
-        redirect('tosiIndex.php');
-    }
-    showPostsFull($_SESSION['postId'], $DBH); //$Id -> SESSION id
-
-?>
+<body class="tumma">
 <br>
-<hr>
-<br>
-<ul id="comments">
+<main class="fullPostBox oranssi">
+    <button class="btn"><a href="tosiIndex.php">↩</a></button>
+
+    <ul>
+        <?php
+            if($_POST['postId']) {
+                $_SESSION['postId'] = $_POST['postId'];
+            }
+            if(!$_SESSION['postId']){
+                redirect('tosiIndex.php');
+            }
+            showPostsFull($_SESSION['postId'], $DBH); //$Id -> SESSION id
+
+        ?>
+    </ul>
+    <br>
+    <hr>
+    <br>
+    <ul id="comments">
+        <?php
+            showComments($_SESSION['postId'], $DBH);
+        ?>
+    </ul>
+
+    <br>
+    <hr>
     <?php
-        showComments($_SESSION['postId'], $DBH);
-    ?>
-</ul>
+        echo'<textarea class="commentTextarea" name="comment" form="commentForm" cols="40" rows="5" placeholder="Sano jotain mukavaa :^)" maxlength="140">';
+        echo'</textarea><!-- tähän regex -->';
 
+        echo'<form id="commentForm" method="post" action="makeComment.php">';
+            echo '<input type="text" hidden name="postId" value="'. $_SESSION['postId'] .'">';
+            echo' <input class="btn" type="submit" value="➠">';
+        echo'</form>';
+     ?>
+</main>
 <br>
-<hr>
-<?php
-    echo'<textarea class="commentTextarea" name="comment" form="commentForm" cols="40" rows="5" placeholder="Sano jotain mukavaa :^)" maxlength="140">';
-    echo'</textarea><!-- tähän regex -->';
-
-    echo'<form id="commentForm" method="post" action="makeComment.php">';
-        echo '<input type="text" hidden name="postId" value="'. $_SESSION['postId'] .'">';
-        echo' <input class="btn" type="submit" value="➠">';
-    echo'</form>';
- ?>
 <script src="js/main.js"></script>
 </body>

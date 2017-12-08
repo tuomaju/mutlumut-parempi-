@@ -15,25 +15,25 @@ $_SESSION['search']='';
 
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:600" rel="stylesheet">
 
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body class="tumma">
+<header>
 <h1>
     tumultum
 </h1>
 <?php
     if($_SESSION['kirjautunut']=='yes'){
         echo '<button class="btn"><a href="editProfile.php">👤</a></button>';      // hyvä funktio :) tekee hyvin =)
-        echo '<br>';
         echo('<button class="btn"><a href="logout.php">🚪</a></button>');
-        echo '<br>';
         echo('<button class="btn"><a href="makePost.php">🎙️</a></button>');
-        echo '<br>';
         echo('<button class="btn"><a href="search.php">🔍</a></button>');
-        echo '<br>';
         echo('<button class="btn"><a href="tosiIndex.php">♻</a></button>');
 ?>
+</header>
+<aside></aside>
 <main>
     <ul id="posts">
         <!--
@@ -72,10 +72,10 @@ $_SESSION['search']='';
                 //var_dump(getMaxId($DBH));
                 //echo getMaxId($DBH)[0];
         ?>
-        <p id="demo"> asd </p>
+
     </ul>
 </main>
-
+<aside></aside>
 <?php
     }else{
         echo'Olet kirjautunut ulos.';

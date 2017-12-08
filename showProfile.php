@@ -10,9 +10,26 @@ include_once ('config/config.php');
 include_once ('functions.php');
 
 $profileId = $_REQUEST['profileId'];
+?>
 
-echo'<link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">';
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>tumultum</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:600" rel="stylesheet">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+
+<body class="tumma">
+<?php
+
 echo '<div>';
 echo 'Nimi: ' . getProfile($profileId, $DBH)->profileName;
 echo '<br>';
@@ -28,4 +45,6 @@ echo '<ul>';
 echo '</ul>';
 
 ?>
+
+</body>
 

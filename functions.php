@@ -341,20 +341,26 @@ function showPosts($luku, $search, $DBH){
             echo '<li class="posts oranssi" id="'.$j.'">';
             // echo 'tiedosto: ' . getPost($j, $DBH)->audio;
             //   echo '<br>';
-            echo '<header>';
+            echo '<div class="postHeader">';
+            echo '<div>';
             echo '<img class="profileimg" src="' . getProfile($asd, $DBH)->img . '">';
             echo '<a href="showProfile.php?profileId='.getProfile($asd, $DBH)->profileId.'">'. getProfile($asd, $DBH)->profileName.'</a>';
-            echo ' ' . getPost($j, $search, $DBH)->postTime;
-            echo '</header>';
+            echo '</div>';
+            echo '<p class="postTime"> ' . getPost($j, $search, $DBH)->postTime . '</p>';
+            echo '</div>';
             echo '<br>';
-            echo '<audio controls><source src="' . getPost($j, $search, $DBH)->audio . '"></audio>';
+            //echo '<audio controls><source src="' . getPost($j, $search, $DBH)->audio . '"></audio>';
+            echo '<div class="postMain">';
+            echo '<div class="playbtnBox">';
+            echo '<img class="playbtn" src="icons/playbtn.svg">';
+            echo '</div>';
             // echo '<button class="playBtn">></button>';
-            echo '<br>';
+          //  echo '<br>';
             echo '<div class="emojiContainer">';
-            echo '<p class="vaalea">' . decodeEmoji($j, 'emoji1', $DBH) . '</p>';
-            echo '<p class="vaalea">' . decodeEmoji($j, 'emoji2', $DBH) . '</p>';
-            echo '<p class="vaalea">' . decodeEmoji($j, 'emoji3', $DBH) . '</p>';
-            echo '<p class="vaalea">' . decodeEmoji($j, 'emoji4', $DBH) . '</p>';
+            echo '<p class="emoji vaalea">' . decodeEmoji($j, 'emoji1', $DBH) . '</p>';
+            echo '<p class="emoji vaalea">' . decodeEmoji($j, 'emoji2', $DBH) . '</p>';
+            echo '<p class="emoji vaalea">' . decodeEmoji($j, 'emoji3', $DBH) . '</p>';
+            echo '<p class="emoji vaalea">' . decodeEmoji($j, 'emoji4', $DBH) . '</p>';
             echo '</div>';
             //echo '<button class="btn"><a href="poista.php?='.$j.'">🚮</a></button>';                       //poistojuttu
             removeButton($j,$_SESSION['userId'], $DBH);
@@ -374,16 +380,21 @@ function showPosts($luku, $search, $DBH){
 
             // echo '<br>';
             // echo '<a id="'.$j.'" href="fullPost.php">Full post</a>';
-            echo '<form method="post" action="fullPost.php">';
-            echo '<input type="text" hidden name="postId" value="' . $j . '">';
-            echo '<input class="btn" type="submit" value="💬">';
-            echo '</form>';
+
+            echo '<div class="postLike">';
             //echo '<button class="btn like">👎</button>';
             echo '<button class="btn like"><a href="like.php?postId='.$j.'">^</a></button>';
-            echo '<br>';
             echo getPostScore($j, $DBH)[0];
-            echo '<br>';
             echo '<button class="btn dislike"><a href="dislike.php?postId='.$j.'">👎</a></button>';
+            echo '</div>';
+            echo '</div>';
+
+            /*
+            echo '<form method="post" action="fullPost.php">';
+
+            echo '<input type="text" hidden name="postId" value="' . $j . '">';
+            echo '<input class="btn" type="submit" value="💬">';
+            echo '</form>';*/
             echo '</li>';
 
 
@@ -399,15 +410,13 @@ function showPosts($luku, $search, $DBH){
  */
 function showPostsFull($postId, $DBH){
     echo '<li class="posts">';
-    echo 'tiedosto: ' . getPost($postId,'IS NOT NULL', $DBH)->audio;
-    echo '<br>';
     echo '<audio controls> <source src="'. getPost($postId,'IS NOT NULL', $DBH)->audio .'"></audio>';
     echo '<br>';
     echo '<div class="emojiContainer">';
-    echo '<p>' . decodeEmoji($postId, 'emoji1', $DBH) . '</p>';
-    echo '<p>' . decodeEmoji($postId, 'emoji2', $DBH) . '</p>';
-    echo '<p>' . decodeEmoji($postId, 'emoji3', $DBH) . '</p>';
-    echo '<p>' . decodeEmoji($postId, 'emoji4', $DBH) . '</p>';
+    echo '<p class="emoji vaalea">' . decodeEmoji($postId, 'emoji1', $DBH) . '</p>';
+    echo '<p class="emoji vaalea">' . decodeEmoji($postId, 'emoji2', $DBH) . '</p>';
+    echo '<p class="emoji vaalea">' . decodeEmoji($postId, 'emoji3', $DBH) . '</p>';
+    echo '<p class="emoji vaalea">' . decodeEmoji($postId, 'emoji4', $DBH) . '</p>';
     echo '</div>';
     $profileId = getPost($postId,'IS NOT NULL', $DBH)->postProfile;
     echo '<br>';
@@ -485,12 +494,12 @@ function showComments($postId, $DBH){
     for ($i = 1; $i <= $luku; $i++) {       //joku bittijuttu et tulee negatiiviset yli ??  VOIS kans järjestää post timella
         if (getComment($postId, $i, $DBH)) {
             echo '<br>';
-            echo '<li>';
-            echo '<header class="commentHeader">';
+            echo '<li class="vaalea">';
+            echo '<div class="commentHeader">';
             echo '<img src=" '. getProfile(getComment($postId, $i, $DBH)[3], $DBH)->img . '">';
             echo '<a href="showProfile.php?profileId='.getProfile(getComment($postId, $i, $DBH)[3], $DBH)->profileId.'">'.getProfile(getComment($postId, $i, $DBH)[3], $DBH)->profileName. '</a> ';
             echo getProfile(getComment($postId, $i, $DBH)[3], $DBH)->score;
-            echo '</header>';
+            echo '</div>';
             echo '<p>' . getComment($postId, $i, $DBH)[1] . '</p>';
             removeCommentButton($_SESSION['userId'], $i, $DBH);
             echo '</li>';
@@ -560,48 +569,6 @@ function getProfilePosts($profileId, $DBH){
 
 function showProfilePosts($profileId, $DBH){
 
-    /*
-$search = 'IS NOT NULL';
-
-$luku=getMaxId('postId', 'p_post', $DBH)[0];
-
-echo $profileId;
-for ($j = 1  ; $j <= $luku; $j++) {       //joku bittijuttu et tulee negatiiviset yli ??  VOIS kans järjestää post timella
-    if (getProfilePosts($profileId, $DBH)) {
-        $asd = getProfilePosts($profileId, $DBH)->postProfile;
-        echo '<br>';
-        echo '<li class="posts oranssi" id="' . $j . '">';
-
-        echo '<header>';
-        echo '<img class="profileimg" src="' . getProfile($profileId, $DBH)->img . '">';
-        echo '<a href="showProfile.php?profileId=' . getProfile($profileId, $DBH)->profileId . '">' . getProfile($profileId, $DBH)->profileName . '</a>';
-        echo ' ' . getProfilePosts($profileId, $DBH)->postTime;
-        echo '</header>';
-        echo '<br>';
-        echo '<audio controls><source src="' . getProfilePosts($profileId, $DBH)->audio . '"></audio>';
-        echo '<br>';
-        echo '<div class="emojiContainer">';
-        echo '<p class="vaalea">' . decodeEmoji($j, 'emoji1', $DBH) . '</p>';
-        echo '<p class="vaalea">' . decodeEmoji($j, 'emoji2', $DBH) . '</p>';
-        echo '<p class="vaalea">' . decodeEmoji($j, 'emoji3', $DBH) . '</p>';
-        echo '<p class="vaalea">' . decodeEmoji($j, 'emoji4', $DBH) . '</p>';
-        echo '</div>';
-        removeButton($j, $_SESSION['userId'], $DBH);
-        echo '<br>';
-        echo '<form method="post" action="fullPost.php">';
-        echo '<input type="text" hidden name="postId" value="' . $j . '">';
-        echo '<input class="btn" type="submit" value="💬">';
-        echo '</form>';
-        echo '<button class="btn like"><a href="like.php?postId=' . $j . '">^</a></button>';
-        echo '<br>';
-        echo getPostScore($j, $DBH)[0];
-        echo '<br>';
-        echo '<button class="btn dislike"><a href="dislike.php?postId=' . $j . '">👎</a></button>';
-        echo '</li>';
-
-        }
-    }
-    */
 
         $search = 'IS NOT NULL';
     $luku = getMaxId('postId', 'p_post', $DBH)[0];
@@ -654,7 +621,6 @@ for ($j = 1  ; $j <= $luku; $j++) {       //joku bittijuttu et tulee negatiivise
                 echo '<input type="text" hidden name="postId" value="' . $j . '">';
                 echo '<input class="btn" type="submit" value="💬">';
                 echo '</form>';
-                //echo '<button class="btn like">👎</button>';
                 echo '<button class="btn like"><a href="like.php?postId=' . $j . '">^</a></button>';
                 echo '<br>';
                 echo getPostScore($j, $DBH)[0];

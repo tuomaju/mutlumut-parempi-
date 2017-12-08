@@ -34,8 +34,8 @@ try {
                         //$user = $STH3->fetch(); //?  */
                         echo'jep';
                         try {
-                            $STH4 = $DBH->prepare("INSERT INTO p_profile (img, score, profileUser, profileName)
-                            VALUES ('$placeholderImg', 0,  ".$DBH->lastInsertId().", '$username')");
+                            $STH4 = $DBH->prepare("INSERT INTO p_profile (img, profileUser, profileName)
+                            VALUES ('$placeholderImg', ".$DBH->lastInsertId().", '$username')");
                             $STH4->execute();
                         }catch(PDOException $e){
                             echo'Profillia ei luotu';

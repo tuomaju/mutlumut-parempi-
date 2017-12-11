@@ -334,7 +334,7 @@ function showPosts($luku, $search, $DBH){
         $search= '= "' . encodeEmoji2($search) .'"';
     }
 
-    for ($j = $luku - 20; $j <= $luku; $j++) {       //joku bittijuttu et tulee negatiiviset yli ??  VOIS kans järjestää post timella
+    for ($j = $luku; $j >= $luku - 20; $j--) {       //joku bittijuttu et tulee negatiiviset yli ??  VOIS kans järjestää post timella
         if (getPost($j, $search, $DBH)) {
             $asd = getPost($j, $search, $DBH)->postProfile;
             echo '<br>';
@@ -348,11 +348,12 @@ function showPosts($luku, $search, $DBH){
             echo '</div>';
             echo '<p class="postTime"> ' . getPost($j, $search, $DBH)->postTime . '</p>';
             echo '</div>';
-            echo '<br>';
-            //echo '<audio controls><source src="' . getPost($j, $search, $DBH)->audio . '"></audio>';
             echo '<div class="postMain">';
             echo '<div class="playbtnBox">';
-            echo '<img class="playbtn" src="icons/playbtn.svg">';
+            echo '<audio controls><source src="' . getPost($j, $search, $DBH)->audio . '"></audio>';
+            echo '<img class="playbtn" src="icons/play.svg">';
+            echo '<img class="pausebtn" src="icons/pause3.svg">';
+            echo '<p class="counter"></p>';
             echo '</div>';
             // echo '<button class="playBtn">></button>';
           //  echo '<br>';
@@ -379,18 +380,24 @@ function showPosts($luku, $search, $DBH){
             // echo '<br>';
 
             // echo '<br>';
-            // echo '<a id="'.$j.'" href="fullPost.php">Full post</a>';
+
 
             echo '<div class="postLike">';
             //echo '<button class="btn like">👎</button>';
-            echo '<button class="btn like"><a href="like.php?postId='.$j.'">^</a></button>';
-            echo getPostScore($j, $DBH)[0];
-            echo '<button class="btn dislike"><a href="dislike.php?postId='.$j.'">👎</a></button>';
+            echo '<a href="like.php?postId='.$j.'"><img src="icons/upvote.svg"></a>';
+            echo '<p class="score">' . getPostScore($j, $DBH)[0] . '</p>';
+            echo '<a href="dislike.php?postId='.$j.'"><img src="icons/downvote.svg"></a>';
             echo '</div>';
             echo '</div>';
 
-            /*
-            echo '<form method="post" action="fullPost.php">';
+            echo '<div class="fullPostModal modalHidden">';
+            include 'fullPost.php';
+            echo '</div>';
+            echo '<div class="postFooter">';
+            echo '<h2>•••</h2>';
+            echo '</div>';
+
+            /*echo '<form method="post" action="fullPost.php">';
 
             echo '<input type="text" hidden name="postId" value="' . $j . '">';
             echo '<input class="btn" type="submit" value="💬">';
@@ -494,7 +501,7 @@ function showComments($postId, $DBH){
     for ($i = 1; $i <= $luku; $i++) {       //joku bittijuttu et tulee negatiiviset yli ??  VOIS kans järjestää post timella
         if (getComment($postId, $i, $DBH)) {
             echo '<br>';
-            echo '<li class="vaalea">';
+            echo '<li class="comment vaalea">';
             echo '<div class="commentHeader">';
             echo '<img src=" '. getProfile(getComment($postId, $i, $DBH)[3], $DBH)->img . '">';
             echo '<a href="showProfile.php?profileId='.getProfile(getComment($postId, $i, $DBH)[3], $DBH)->profileId.'">'.getProfile(getComment($postId, $i, $DBH)[3], $DBH)->profileName. '</a> ';

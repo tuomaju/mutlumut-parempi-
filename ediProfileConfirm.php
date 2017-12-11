@@ -32,6 +32,6 @@ backup plan: jos ei js toimi, tehään omat tiedostot kaikille kuville
 
 
  */
-redirect('editProfile.php');
+redirect('tosiIndex.php');
 
 ?>

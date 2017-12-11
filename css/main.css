@@ -62,6 +62,7 @@ body {
     color: #1C2021;
     display: flex;
     flex-wrap: wrap;
+
 }
 main{
     display: flex;
@@ -71,12 +72,44 @@ main{
 }
 
 header{
+    display: flex;
     width:100%;
     text-align: center;
+    justify-content: center;
+
+}
+
+#stickyHeader {
+    background-color:  #7B241C;
+    box-shadow: 0rem 0.2rem 0 0 rgba(0, 0, 0, 0.28);
+    justify-content: space-between;
+    overflow: hidden;
+    top:0;
+    position:fixed;
+    align-items: center;
+}
+
+#stickyHeader img{
+    cursor: pointer;
+    height:4.5rem;
+    margin: 0 1rem;
+
+}
+
+#stickyHeader a{
+    text-decoration: none;
+}
+
+#indexMain {
+    margin-top: 5.5rem;
+
 }
 
 body h1{
+    font-size: 4rem;
     color: #FFF0D6;
+    margin:0;
+    cursor: pointer;
 }
 
 .profileimg{
@@ -212,11 +245,11 @@ button a{
 
 
 .commentTextarea{
-    resize: none;
     border-radius: 9px;
-    border: 3px solid rgba(12, 49, 66, 0.54);
+    border: 0px solid rgba(12, 49, 66, 0.54);
+    box-shadow: inset 0.15rem 0.15rem 0 0 rgba(99, 32, 0, 0.41);
     width:35rem;
-    height:10rem;
+    height:4rem;
 }
 
 ul {
@@ -226,19 +259,36 @@ ul {
     list-style: none;
 }
 
+.comments{
+    padding: 0;
+    list-style: none;
+    width:60%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+}
 
-#comments li{
+.comment {
     border-radius: 39.5px;
     border: 4px solid transparent;
-    max-width: 20em;
-
 }
+
+
+.makeComment{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
 .commentHeader{
 
 
 }
 
-#comments li img{
+.comments li img{
 
     border: 4px solid #FFF0D6;
     width: 63px;
@@ -246,7 +296,7 @@ ul {
     border-radius: 50%;
 }
 
-#comments p{
+.comments p{
 
     margin:0;
     padding: 5px 15px;
@@ -255,24 +305,56 @@ ul {
 
 .posts {
     border-radius: 43.5px;
-    border: 4px solid #F0A830;
+    border: 4px solid #f0a830;
+    box-shadow: 0.3rem 0.3rem 0 0 rgba(70, 11, 0, 0.38);
 
 }
 
+.posts a img {
+    width:5rem;
+    height: 5rem;
+    cursor: pointer;
+}
+
 .emoji{
-    font-size: 2rem;
-    margin: 0.3rem;
+    box-shadow: inset 0.15rem 0.15rem 0 0 rgba(99, 32, 0, 0.41);
+    font-size: 4rem;
+    margin: 1rem;
     display: inline-block;
-    width: 3rem;
-    height: 3rem;
+    width: 5.5rem;
+    height: 5.5rem;
     text-align: center;
     vertical-align: middle;
-    line-height: 3rem;
-    border-radius: 5px;
+    line-height: 6.5rem;
+    border-radius: 15%;
+
 }
 
 .postHeader img {
     border: 4px solid #F0A830;
+}
+
+.postFooter {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.postFooter h2 {
+    margin:0;
+    cursor: pointer;
+}
+
+.fullPostModal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.modalHidden {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .fullPostBox {
@@ -299,6 +381,7 @@ ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-bottom: -1.5rem;
 }
 
 .postTime{
@@ -306,45 +389,165 @@ ul {
     margin-right: 2rem;
 }
 
-.playbtn{
-    border:0px;
+
+.playbtnBox{
+    width: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.playbtn {
+    cursor: pointer;
+    fill: pink;
+    border: 0;
     display: flex;
     flex-wrap: wrap;
     width: 5rem;
     height: 5rem;
 }
 
+.pausebtn{
+    cursor: pointer;
+    border:0;
+    display: none;
+    flex-wrap: wrap;
+    width: 5rem;
+    height: 5rem;
+}
+
 .postMain{
+    margin:0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
 }
-.playbtnBox{
-    width: 30%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+
+.score {
+    font-size: 2rem;
+    margin:-1rem;
+    padding: 0;
 }
 
 .emojiContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width:40%;
+    width:60%;
 }
 
 .postLike{
-    width:30%;
+    width:20%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-flow: column wrap;
     align-content: stretch;
 }
-audio{
 
+
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.51); /* Black w/ opacity */
 }
 
+/* Modal Content */
+.modal-content {
+    position: absolute;
+
+    padding: 20px;
+    width: 60%;
+    height: inherit;
+}
+.profileModal{
+    left: 0;
+    top: 0;
+}
+.makePostModal{
+    right: 0;
+    top: 0;
+}
+/* The Close Button */
+.closeModal {
+    color: #aaaaaa;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+.closeModal:hover,
+.closeModal:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#editProfile{
+    display: none;
+}
+
+.uploadFile{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.uploadFile + label{
+    font-size: 500%;
+}
+.inputEmoji{
+    border-radius: 15%;
+    width: 6rem;
+    height: 6rem;
+    text-align: center;
+    margin: 1rem;
+    border-style: none;
+    font-size: 4rem;
+}
+
+.inputEmoji ::value {
+    line-height: 3.35rem;
+    vertical-align: middle;
+}
+
+#makePost{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+audio{
+    display: none;
+}
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: rgba(0,0,0,0.20);
+}
+::-moz-placeholder { /* Firefox 19+ */
+    color: rgba(0,0,0,0.20);
+}
+:-ms-input-placeholder { /* IE 10+ */
+    color: rgba(0,0,0,0.20);
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: rgba(0,0,0,0.20);
+}
 /* ==========================================================================
    Media Queries
    ========================================================================== */

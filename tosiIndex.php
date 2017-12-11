@@ -20,21 +20,50 @@ $_SESSION['search']='';
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body class="tumma">
-<header>
-<h1>
-    tumultum
-</h1>
-<?php
-    if($_SESSION['kirjautunut']=='yes'){
-        echo '<button class="btn"><a href="editProfile.php">👤</a></button>';      // hyvä funktio :) tekee hyvin =)
-        echo('<button class="btn"><a href="logout.php">🚪</a></button>');
-        echo('<button class="btn"><a href="makePost.php">🎙️</a></button>');
-        echo('<button class="btn"><a href="search.php">🔍</a></button>');
-        echo('<button class="btn"><a href="tosiIndex.php">♻</a></button>');
-?>
+<div id="profileModal" class="modal">
+    <div class="modal-content profileModal oranssi">
+        <span id="closeProfileModal" class="closeModal">&times;</span>
+            <div id="searchAndProfile">
+                <?php
+                include "search.php";
+                include "profile.php";
+                echo('<button class="btn"><a href="logout.php">🚪</a></button>');
+                ?>
+            </div>
+            <div id="editProfile">
+                <?php
+                include "editProfile.php";
+                ?>
+            </div>
+
+        <button id = 'editProfileBtn'>Muokkaa</button>
+    </div>
+</div>
+
+<div id="makePostModal" class="modal">
+    <div class="modal-content makePostModal oranssi">
+        <span id="closePostModal" class="closeModal">&times;</span>
+        <div id="makePost">
+            <?php
+            include "makePost.php";
+            ?>
+        </div>
+    </div>
+</div>
+<header id="stickyHeader" class="tumma">
+    <img src="icons/menu.svg" id="openProfileModal">
+    <a href="tosiIndex.php">
+        <h1>tumultum</h1>
+    </a>
+    <img src="icons/menu2.svg" id="openMakePostModal">
 </header>
+    <?php
+    if($_SESSION['kirjautunut']=='yes'){
+
+?>
+
 <aside></aside>
-<main>
+<main id="indexMain">
     <ul id="posts">
         <!--
         <li>

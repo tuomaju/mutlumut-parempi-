@@ -26,7 +26,6 @@ $profileId = $_REQUEST['profileId'];
     <link href="https://fonts.googleapis.com/css?family=Nunito:600" rel="stylesheet">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-
 <body class="tumma">
 <?php
 

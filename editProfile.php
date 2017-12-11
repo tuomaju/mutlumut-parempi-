@@ -2,11 +2,9 @@
 session_start();
 include_once ('config/config.php');
 include_once ('functions.php');
-echo '';
 
 
-
-echo '<button class="btn"><a href="tosiIndex.php">↩</a></button>';
+//echo '<button class="btn"><a href="tosiIndex.php">↩</a></button>';
 
 ?>
 
@@ -28,10 +26,8 @@ echo '<button class="btn"><a href="tosiIndex.php">↩</a></button>';
     echo 'Nimi: ' . getProfile($_SESSION['profileId'], $DBH)->profileName;
     echo '<br>';
     echo '<img class="profileimg" src="' . getProfile($_SESSION['profileId'], $DBH)->img .  '">';
-    echo $_SESSION['userId'];
-    echo $_SESSION['profileId'];
     echo '<br>';
-    echo 'My score : '.getProfileScore($_SESSION['profileId'], $DBH)[0];
+    echo 'Suosio: '.getProfileScore($_SESSION['profileId'], $DBH)[0];
     echo '<br>';
     echo '</div>';
 
@@ -58,7 +54,7 @@ echo '<button class="btn"><a href="tosiIndex.php">↩</a></button>';
         <img class="editProfileImg" src="profile_images/placeholder4.jpg">
     </label>
     <br>
-    <input class="btn" type="submit" value="Tallenna">
+    <input id="saveProfile" class="btn" type="submit" value="Tallenna">
 </form>
 
 

@@ -1,73 +1,114 @@
-let currentFile = "";
-playAudio = (audio, button, audioFile) =>{
-  try {
-    const oAudio = document.querySelectorAll(audio);
-    const btn = document.getElementsByClassName(button);
-    let audioURL = document.getElementById(audioFile);
 
-    //Skip loading if current file hasn't changed.
-    if (audioURL.value !== currentFile) {
-      oAudio.src = audioURL.value;
-      currentFile = audioURL.value;
-    }
 
-    // Tests the paused attribute and set state.
-    if (oAudio.paused) {
-      oAudio.play();
-      btn.textContent = "Pause";
-    }
-    else {
-      oAudio.pause();
-      btn.textContent = "Play";
-    }
+const profileModal = document.getElementById('profileModal');
+const profileModalBtn = document.getElementById('openProfileModal');
+const closeProfileModal = document.getElementById('closeProfileModal');
+
+profileModalBtn.addEventListener('click', () => {
+  profileModal.style.display = "block";
+});
+
+closeProfileModal.addEventListener('click', () => {
+  profileModal.style.display = "none";
+});
+
+window.addEventListener('click', (evt) => {
+  if (evt.target === profileModal){
+    profileModal.style.display = "none";
   }
-  catch (e) {
-    // Fail silently but show in F12 developer tools console
-    if (window.console && console.error("Error:" + e)) ;
+});
+
+const editProfileBtn = document.getElementById('editProfileBtn');
+const editProfile = document.getElementById('editProfile');
+const searchAndProfile = document.getElementById('searchAndProfile');
+
+editProfileBtn.addEventListener('click', () => {
+  editProfile.style.display = "inline";
+    searchAndProfile.style.display = "none";
+    editProfileBtn.style.display = "none";
+});
+
+
+const makePostModal = document.getElementById('makePostModal');
+const postModalBtn = document.getElementById('openMakePostModal');
+const closePostModal = document.getElementById('closePostModal');
+
+postModalBtn.addEventListener('click', () => {
+  makePostModal.style.display = "block";
+});
+
+closePostModal.addEventListener('click', () => {
+  makePostModal.style.display = "none";
+});
+
+window.addEventListener('click', (evt) => {
+  if (evt.target === makePostModal){
+   makePostModal.style.display = "none";              
   }
-};
+});
+
+const postit = document.querySelectorAll('.posts');
+
+
+postit.forEach((post) => {
+  let playbtn = post.querySelector('.playbtn');
+  let audio = post.querySelector('audio');
+  let pausebtn = post.querySelector('.pausebtn');
+  let counter = post.querySelector('.counter');
+  let showMore = post.querySelector('.postFooter');
+  let fullPost = post.querySelector('.fullPostModal');
+
+
+  playbtn.addEventListener('click', () => {
+   audio.play();
+   playbtn.style.display = 'none';
+   pausebtn.style.display = 'flex';
+  });
+  pausebtn.addEventListener('click', () => {
+   audio.pause();
+   playbtn.style.display = 'flex';
+   pausebtn.style.display = 'none';
+  });
+  showMore.addEventListener('click', () => {
+    console.log('asd');
+    fullPost.classList.toggle('modalHidden');
+  });
+  audio.addEventListener('ended' , () => {
+   playbtn.style.display = 'flex';
+   pausebtn.style.display = 'none';
+  });
+  audio.addEventListener('timeupdate', () => {
+     counter.innerText = Math.trunc(audio.duration - audio.currentTime +0.99) + 's';
+  });
+
+
+
+  
+
+  console.log(audio.duration);
+
+              /*
+  let textArea = document.querySelector('.commentTextarea');
+  let commentForm = document.querySelector('.commentForm');
+
+  textArea.addEventListener('focus', (evt) => {
+
+    textArea.addEventListener('keyup', (evt) => {
+              if (evt.keyCode === 13){
+                console.log('moi');
+                evt.preventDefault();
+                commentForm.submit();
+              }
+  })});
+      */
+ });
 
 
 
 
-like = (str) => {
-  const xmlhttp = new XMLHttpRequest();
-  let posts = document.querySelectorAll('.posts');
-  console.log(posts);
-  for (let post of posts){
-    let postid = post.getAttribute('id');
-
-    let button = document.getElementById(postid).querySelector('.like');
-
-    button.onclick = (e) => {
-      button.innerHTML += '1';
-      xmlhttp.onreadystatechange = () => {
-        button.innerHTML += '2';
-        console.log(this.statusText);
-        if (this.readyState === 4 && this.status === 200){
-          button.innerHTML += this.responseText;
-          console.log('3' + this.responseText);
-        }
-
-      };
-      xmlhttp.open("GET", "like.php", true);
-      xmlhttp.send();
-    };
-
-    console.log(postid);
-  }
 
 
-};
 
-loadDoc = () => {
-  const xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange =  () => {
-    if (this.readyState === 4 && this.status === 200) {
-      document.getElementById("demo").innerHTML = this.responseText;
-      console.log(this.responseText);
-    }
-  };
-  xhttp.open("GET", "ajax_info.txt", true);
-  xhttp.send();
-};
+
+
+

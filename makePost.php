@@ -10,29 +10,23 @@ session_start();
 
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-</head>
-<body class="punainen">
-    <button><a href="tosiIndex.php">↩</a></button>
-    <fieldset>
+
+
+    <!-- <button class="btn"><a href="tosiIndex.php">↩</a></button> -->
 
         <form action="postConfirm.php" method="post" enctype="multipart/form-data">
-            <input placeholder="sos" type="text" name="emoji1">
+            <div>
+            <input placeholder="" type="text" name="emoji1" class="inputEmoji vaalea">
+            <input placeholder="" type="text" name="emoji2" class="inputEmoji vaalea">
+            <input placeholder="" type="text" name="emoji3" class="inputEmoji vaalea">
+            <input placeholder="" type="text" name="emoji4" class="inputEmoji vaalea">
+            </div>
             <br>
-            <input placeholder="sos" type="text" name="emoji2">
-            <br>
-            <input placeholder="sos" type="text" name="emoji3">
-            <br>
-            <input placeholder="sss" type="text" name="emoji4">
-            <br>
-            <input type="file" accept="audio/*" capture="microphone" name="upload">
+            <input type="file" accept="audio/*" capture="microphone" name="upload" id="upload" class="uploadFile">
+            <label for="upload">🎙️</label>
             <br>
             <input type="submit" value="Lähetä" name="submit">
         </form>
-    </fieldset>
-</body>
+
+
 

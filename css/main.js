@@ -1,22 +1,19 @@
 
+
 const profileModal = document.getElementById('profileModal');
 const profileModalBtn = document.getElementById('openProfileModal');
 const closeProfileModal = document.getElementById('closeProfileModal');
-const indexMain = document.querySelector('body');
 
 profileModalBtn.addEventListener('click', () => {
   profileModal.style.display = "block";
-  indexMain.style.overflow = 'hidden';
 });
 
 closeProfileModal.addEventListener('click', () => {
   profileModal.style.display = "none";
-  indexMain.style.overflow = 'auto';
 });
 
 window.addEventListener('click', (evt) => {
   if (evt.target === profileModal){
-    indexMain.style.overflow = 'auto';
     profileModal.style.display = "none";
   }
 });
@@ -26,7 +23,7 @@ const editProfile = document.getElementById('editProfile');
 const searchAndProfile = document.getElementById('searchAndProfile');
 
 editProfileBtn.addEventListener('click', () => {
-  editProfile.style.display = "flex";
+  editProfile.style.display = "inline";
     searchAndProfile.style.display = "none";
     editProfileBtn.style.display = "none";
 });
@@ -38,18 +35,15 @@ const closePostModal = document.getElementById('closePostModal');
 
 postModalBtn.addEventListener('click', () => {
   makePostModal.style.display = "block";
-  indexMain.style.overflow = 'hidden';
 });
 
 closePostModal.addEventListener('click', () => {
   makePostModal.style.display = "none";
-  indexMain.style.overflow = 'auto';
 });
 
 window.addEventListener('click', (evt) => {
   if (evt.target === makePostModal){
-   makePostModal.style.display = "none";
-    indexMain.style.overflow = 'auto';
+   makePostModal.style.display = "none";              
   }
 });
 
@@ -63,7 +57,6 @@ postit.forEach((post) => {
   let counter = post.querySelector('.counter');
   let showMore = post.querySelector('.postFooter');
   let fullPost = post.querySelector('.fullPostModal');
-  let comments = document.querySelector('.comments');
 
 
   playbtn.addEventListener('click', () => {
@@ -78,7 +71,10 @@ postit.forEach((post) => {
    pausebtn.style.display = 'none';
   });
   showMore.addEventListener('click', () => {
-    fullPost.classList.toggle('modalHidden');
+    console.log('asd');
+    //fullPost.classList.toggle('modalHidden');
+    let koko = postit.clientHeight + 300;
+    console.log(koko);
 
   });
   audio.addEventListener('ended' , () => {

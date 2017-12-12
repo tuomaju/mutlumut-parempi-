@@ -364,7 +364,7 @@ function showPosts($luku, $search, $DBH){
             echo '<p class="emoji vaalea">' . decodeEmoji($j, 'emoji4', $DBH) . '</p>';
             echo '</div>';
             //echo '<button class="btn"><a href="poista.php?='.$j.'">🚮</a></button>';                       //poistojuttu
-            removeButton($j,$_SESSION['userId'], $DBH);
+
             //  echo '<br>';
             //  echo 'j: ' . $j;
             //   echo '<br>';
@@ -394,9 +394,11 @@ function showPosts($luku, $search, $DBH){
             include 'fullPost.php';
             echo '</div>';
             echo '<div class="postFooter">';
-            echo '<h2>•••</h2>';
+            echo '<h3>•</h3>';
+            echo '<h2>•</h2>';
+            echo '<h3>•</h3>';
             echo '</div>';
-
+            removeButton($j,$_SESSION['userId'], $DBH);
             /*echo '<form method="post" action="fullPost.php">';
 
             echo '<input type="text" hidden name="postId" value="' . $j . '">';
@@ -405,6 +407,93 @@ function showPosts($luku, $search, $DBH){
             echo '</li>';
 
 
+        }
+    }
+}
+
+/**
+ * @param $profileId
+ * @param $DBH
+ * näyttää profiilin kaikki postit
+ */
+function showProfilePosts($profileId, $DBH){
+
+    $search = 'IS NOT NULL';
+    $luku = getMaxId('postId', 'p_post', $DBH)[0];
+
+    for ($j = $luku ; $j >= 0; $j--) {       //joku bittijuttu et tulee negatiiviset yli ??  VOIS kans järjestää post timella
+        if (getPost($j, $search, $DBH)->postProfile == $profileId) {
+            if (getPost($j, $search, $DBH)) {
+                $asd = getPost($j, $search, $DBH)->postProfile;
+                echo '<br>';
+                echo '<li class="posts oranssi" id="' . $j . '">';
+                // echo 'tiedosto: ' . getPost($j, $DBH)->audio;
+                //   echo '<br>';
+                echo '<div class="postHeader">';
+                echo '<div>';
+                echo '<img class="profileimg" src="' . getProfile($asd, $DBH)->img . '">';
+                echo '<a href="showProfile.php?profileId=' . getProfile($asd, $DBH)->profileId . '">' . getProfile($asd, $DBH)->profileName . '</a>';
+                echo '</div>';
+                echo '<p class="postTime"> ' . getPost($j, $search, $DBH)->postTime . '</p>';
+                echo '</div>';
+                echo '<div class="postMain">';
+                echo '<div class="playbtnBox">';
+                echo '<audio controls><source src="' . getPost($j, $search, $DBH)->audio . '"></audio>';
+                echo '<img class="playbtn" src="icons/play.svg">';
+                echo '<img class="pausebtn" src="icons/pause3.svg">';
+                echo '<p class="counter"></p>';
+                echo '</div>';
+                // echo '<button class="playBtn">></button>';
+                //  echo '<br>';
+                echo '<div class="emojiContainer">';
+                echo '<p class="emoji vaalea">' . decodeEmoji($j, 'emoji1', $DBH) . '</p>';
+                echo '<p class="emoji vaalea">' . decodeEmoji($j, 'emoji2', $DBH) . '</p>';
+                echo '<p class="emoji vaalea">' . decodeEmoji($j, 'emoji3', $DBH) . '</p>';
+                echo '<p class="emoji vaalea">' . decodeEmoji($j, 'emoji4', $DBH) . '</p>';
+                echo '</div>';
+                //echo '<button class="btn"><a href="poista.php?='.$j.'">🚮</a></button>';                       //poistojuttu
+
+                //  echo '<br>';
+                //  echo 'j: ' . $j;
+                //   echo '<br>';
+                //  echo 'profile id: ' . getPost($j, $DBH)->postProfile;
+
+                //  echo '<br>';
+                // echo 'user id' . getProfile($asd, $DBH)->profileUser;
+
+                echo '<br>';
+
+                //   echo '<br>';
+
+                // echo '<br>';
+
+                // echo '<br>';
+
+
+                echo '<div class="postLike">';
+                //echo '<button class="btn like">👎</button>';
+                echo '<a href="like.php?postId=' . $j . '"><img src="icons/upvote.svg"></a>';
+                echo '<p class="score">' . getPostScore($j, $DBH)[0] . '</p>';
+                echo '<a href="dislike.php?postId=' . $j . '"><img src="icons/downvote.svg"></a>';
+                echo '</div>';
+                echo '</div>';
+
+                echo '<div class="fullPostModal modalHidden">';
+                include 'fullPost.php';
+                echo '</div>';
+                echo '<div class="postFooter">';
+                echo '<h3>•</h3>';
+                echo '<h2>•</h2>';
+                echo '<h3>•</h3>';
+                echo '</div>';
+                removeButton($j, $_SESSION['userId'], $DBH);
+                /*echo '<form method="post" action="fullPost.php">';
+
+                echo '<input type="text" hidden name="postId" value="' . $j . '">';
+                echo '<input class="btn" type="submit" value="💬">';
+                echo '</form>';*/
+                echo '</li>';
+            }
         }
     }
 }
@@ -574,72 +663,6 @@ function getProfilePosts($profileId, $DBH){
 }
 
 
-function showProfilePosts($profileId, $DBH){
-
-
-        $search = 'IS NOT NULL';
-    $luku = getMaxId('postId', 'p_post', $DBH)[0];
-
-    for ($j = 1 ; $j <= $luku; $j++) {       //joku bittijuttu et tulee negatiiviset yli ??  VOIS kans järjestää post timella
-
-        if (getPost($j, $search, $DBH)->postProfile == $profileId) {
-
-            if (getPost($j, $search, $DBH)) {
-
-                $asd = getPost($j, $search, $DBH)->postProfile;
-                echo '<br>';
-                echo '<li class="posts oranssi" id="' . $j . '">';
-                // echo 'tiedosto: ' . getPost($j, $DBH)->audio;
-                //   echo '<br>';
-                echo '<header>';
-                echo '<img class="profileimg" src="' . getProfile($asd, $DBH)->img . '">';
-                echo '<a href="showProfile.php?profileId=' . getProfile($asd, $DBH)->profileId . '">' . getProfile($asd, $DBH)->profileName . '</a>';
-                echo ' ' . getPost($j, $search, $DBH)->postTime;
-                echo '</header>';
-                echo '<br>';
-                echo '<audio controls><source src="' . getPost($j, $search, $DBH)->audio . '"></audio>';
-                // echo '<button class="playBtn">></button>';
-                echo '<br>';
-                echo '<div class="emojiContainer">';
-                echo '<p class="vaalea">' . decodeEmoji($j, 'emoji1', $DBH) . '</p>';
-                echo '<p class="vaalea">' . decodeEmoji($j, 'emoji2', $DBH) . '</p>';
-                echo '<p class="vaalea">' . decodeEmoji($j, 'emoji3', $DBH) . '</p>';
-                echo '<p class="vaalea">' . decodeEmoji($j, 'emoji4', $DBH) . '</p>';
-                echo '</div>';
-                //echo '<button class="btn"><a href="poista.php?='.$j.'">🚮</a></button>';                       //poistojuttu
-                removeButton($j, $_SESSION['userId'], $DBH);
-                //  echo '<br>';
-                //  echo 'j: ' . $j;
-                //   echo '<br>';
-                //  echo 'profile id: ' . getPost($j, $DBH)->postProfile;
-
-                //  echo '<br>';
-                // echo 'user id' . getProfile($asd, $DBH)->profileUser;
-
-                echo '<br>';
-
-                //   echo '<br>';
-
-                // echo '<br>';
-
-                // echo '<br>';
-                // echo '<a id="'.$j.'" href="fullPost.php">Full post</a>';
-                echo '<form method="post" action="fullPost.php">';
-                echo '<input type="text" hidden name="postId" value="' . $j . '">';
-                echo '<input class="btn" type="submit" value="💬">';
-                echo '</form>';
-                echo '<button class="btn like"><a href="like.php?postId=' . $j . '">^</a></button>';
-                echo '<br>';
-                echo getPostScore($j, $DBH)[0];
-                echo '<br>';
-                echo '<button class="btn dislike"><a href="dislike.php?postId=' . $j . '">👎</a></button>';
-                echo '</li>';
-
-
-            }
-        }
-    }
-}
 ?>
 
 

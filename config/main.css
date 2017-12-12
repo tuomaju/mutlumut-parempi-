@@ -62,8 +62,6 @@ body {
     color: #1C2021;
     display: flex;
     flex-wrap: wrap;
-       overflow: auto;
-    padding-bottom: 2rem ;
 
 }
 main{
@@ -104,8 +102,7 @@ header{
 
 #indexMain {
     margin-top: 5.5rem;
-     flex-direction: column;
-         align-items: center;
+
 }
 
 body h1{
@@ -125,14 +122,8 @@ body h1{
 index
 */
 .indexbody{
-    height: 100%;
     display: flex;
-
-    justify-content: center;
-
-      align-items: center;
-
-
+    flex-wrap: wrap;
 }
 .indexheader{
     width:100%;
@@ -142,14 +133,12 @@ index
     border-radius: 39.5px;
     display: flex;
     flex-wrap: wrap;
+    background-color: #f9f6ed;
     justify-content: center;
     margin: 0;
-    width: 60%;
-
 }
 aside {
     max-width: 10%;
-
 }
 
 
@@ -199,16 +188,14 @@ aside {
 
 }
 .editProfileLabel > .editProfileInput + .editProfileImg{ /* IMAGE STYLES */
-    border-radius: 9px;
+
     cursor:pointer;
     border: 2px solid transparent;
     width: 75px;
     height: 75px;
-    margin: 0.4rem;
-   
 }
 .editProfileLabel > .editProfileInput:checked + .editProfileImg{ /* (RADIO CHECKED) IMAGE STYLES */
-    border:3px solid #5b1519;
+    border:2px solid #dc2b1c;
 }
 
 button a{
@@ -261,13 +248,8 @@ button a{
     border-radius: 9px;
     border: 0px solid rgba(12, 49, 66, 0.54);
     box-shadow: 0.15rem 0.15rem 0 0 rgba(99, 32, 0, 0.41);
+    width:35rem;
     height:4rem;
-    width: calc(100% - 105px);
-    display: flex;
-}
-
-.commentForm input{
-    padding: 0 0.7rem;
 }
 
 ul {
@@ -280,52 +262,37 @@ ul {
 .comments{
     padding: 0;
     list-style: none;
-    width:100%;
+    width:60%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    height: auto;
-
+    flex-direction: column;
 }
 
 .comment {
     box-shadow: 0.15rem 0.15rem 0 0 rgba(99, 32, 0, 0.41);
-    border-radius: 39.5px;
+    border-radius: 39.5px 9px 9px 9px;
     border: 4px solid transparent;
-    margin: 1rem;
-    width: 60%;
 }
 
 
-.commentForm {
-    margin-top: 1rem;
+.makeComment{
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: center;
-    width: 60%;
+    flex-direction: column;
 }
-
-.commentForm .sendCommentBtn{
-    margin-left: 1rem;
-}
-
 
 .sendCommentBtn {
-    text-align: center;
     height: 4rem;
     border-radius: 9px;
     border-style: none;
     box-shadow: 0.15rem 0.15rem 0 0 rgba(99, 32, 0, 0.41);
     color: #FFF0D6;
-    width: 105px;
-
+    margin-left: 1rem;
+    padding: 0 1rem;
 }
 
-#profile .sendCommentBtn{
-    width: auto;
-    font-size: 125%;
-    margin: 1.5rem;
-}
 
 .commentHeader{
 
@@ -348,7 +315,6 @@ ul {
 }
 
 .posts {
-    height: auto;
     border-radius: 43.5px;
     border: 4px solid #f0a830;
     box-shadow: 0.3rem 0.3rem 0 0 rgba(70, 11, 0, 0.38);
@@ -424,15 +390,15 @@ ul {
 }
 
 .fullPostModal {
-    height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .modalHidden {
-    height: 0;
     display: none;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .fullPostBox {
@@ -440,21 +406,19 @@ ul {
 }
 
 .indexform {
-    box-shadow: 0.15rem 0.15rem 0 0 rgba(70, 11, 0, 0.38);
-    border-style: none;
     margin-top:2rem;
-    border-radius: 9px;
-    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: 2px solid #F0A830;
 }
 
 .indexbtn{
-    color: #9E3E25;   
+    background-color:#F8F8F8 ;
     font-size: 85%;
     margin-bottom: 2rem;
     width: 48%;
-    height: 3rem;
     text-align: center;
-    border-radius: 9px;
+    border-radius: 10px;
+    border: 2px solid #F0A830;
 }
 
 .postHeader{
@@ -533,290 +497,37 @@ ul {
 
 
 .modal {
-    overflow: auto;
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0, 0, 0, 0.51); /* Black w/ opacity */
 }
 
 /* Modal Content */
 .modal-content {
-    overflow: auto;
     position: absolute;
+
     padding: 20px;
     width: 60%;
     height: inherit;
-      
 }
-
 .profileModal{
-
-    height: 100%;
-    box-shadow: 0.2rem 0 0 0 rgba(99, 32, 0, 0.41);
-   
-    padding: 0;
-    flex-direction: column;
-    align-items: center;
- 
-}
-
-
-
-#profileModalMain{
     left: 0;
     top: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    min-width: 34rem ;
 }
-
-
-#profile {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 43.5px;
-    width: 30rem;
-    max-height: 1100px;
-    padding: 1rem;
-    margin: 3.5rem 3rem;
-    box-shadow: 0.2rem 0.2rem 0 0 rgba(99, 32, 0, 0.41);
-}
-
-#showProfile{
-
-      font-size: 125%;
-     display: flex;                                      
-     flex-direction: column;                             
-     justify-content: center;                            
-     align-items: center;                                
-     border-radius: 43.5px;
-     padding: 1rem;                                      
-     margin: 3.5rem 3rem;
-    width: 80%;
-     box-shadow: 0.35rem 0.35rem 0 0 rgba(99, 32, 0, 0.41);
-
-}
-
-#showProfile .posts {
-      box-shadow: 0.2rem 0.2rem 0 0 rgba(99, 32, 0, 0.41);
-}
-
-#showProfileInfo{
-       display: flex;             
-       flex-direction: column;    
-       justify-content: center;   
-       align-items: center;       
-   
-}
-
-#showProfileInfo .profileimg{
-    width: 9rem;                  
-    height:9rem;                  
-    border: 4px solid #9E3E25;    
-    margin-top: 1rem;
-
-}
-
-#showProfileInfo p {
-    margin-top: 1rem;
-    margin-bottom: 0;
-}
-
-
-#profile p {
-    font-size: 125%;
-    margin: 0.5rem;
-}
-#profile h2{
-    font-size: 200%;
-}
-
-#profile .profileimg {
-    width: 9rem;
-    height:9rem;
-    border: 4px solid #9E3E25;
-    margin-bottom: 1.5rem;
-}
-#profileScore{
-    background:url(../icons/tahtipipari.svg);
-    background-repeat: no-repeat;
-    border: none;
-    width:6.5rem;
-    height:6.5rem;
-    line-height: 7.29rem;
-   
-    text-align: center;
-    vertical-align: middle;
-
-}
-
-.profileImages{
-    margin: 1.5rem;
-
-}
-
-.searchForm{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1.5rem;
-    margin-left: 5.5rem;
-
-}
-
-#searchBtn{
-    background:url(../icons/hae.svg);
-    background-repeat: no-repeat;
-    border: none;
-    width:4.5rem;
-    height:4.5rem;
-    display: flex;
-    margin-left: 1rem;
-}
-
-#searchEmoji {
-    margin:0;
-    display: flex;
-}
-
-.searchForm ::placeholder {
-    font-size: 50%;
-    transform: translateY(-0.7rem) ;
-}
-
-.searchForm p{
-    display: flex;
-    margin-right: 3rem;
-    font-size: 125%;
-}
-
-#searchAndProfile{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-}
-
-#editProfile{
-    display: none;
-    align-items: center;
-    flex-direction: column;
-}
-.editProfileInfo {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.editProfileForm {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-
-}
-
-
-#giveName{
-    border-radius: 9px;                                        
-    border: 0px solid rgba(12, 49, 66, 0.54);                  
-    box-shadow: 0.15rem 0.15rem 0 0 rgba(99, 32, 0, 0.41);     
-    height:4rem;                                                                               
-    display: flex;
-    padding: 0 1rem;
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-}
-
-#profileModalFooter{
-    display: flex;
-        justify-content: center;
-}
-
-#logOutBtn{
-    color: #9E3E25;
-    width:10rem;
-    margin-bottom: 2rem;
-}
-
-
 .makePostModal{
-    box-shadow: -0.2rem 0 0 0 rgba(99, 32, 0, 0.41);
     right: 0;
     top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
 }
-
-.makePostModal label{
-    justify-content: center;
-    display: flex;
-}
-
-.makePostModal form{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.makePostModal form h2 {
-    justify-content: center;
-    text-align: center;
-    display: flex;
-    margin: 0;
-    margin-bottom: 4rem;
-    margin-top: 3rem;
-    font-size: 200%;
-}
-
-
-.makePostModal img{
-    box-shadow: 0.2rem 0.2rem 0 0 rgba(99, 32, 0, 0.41);
-    width: 12rem;
-    height:12rem;
-    padding: 1rem;
-    border-radius: 50%;
-}
-
-#makePost{
-    top:0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.makePostSubmit{
-    display: flex;
-    justify-content: center;
-    margin-top: 1.5rem;
-    font-size: 125%;
-}
-
-.sendPostBtn{
-    text-align: center;
-    background-color: black;
-    height: 4rem;
-    border-radius: 9px;
-    border-style: none;
-    box-shadow: 0.15rem 0.15rem 0 0 rgba(99, 32, 0, 0.41);
-    color: #FFF0D6;
-    padding: 0 1rem;
-    width: 10rem;
-}
-
 /* The Close Button */
 .closeModal {
-    display: none;
     color: #aaaaaa;
     font-size: 28px;
     font-weight: bold;
@@ -830,6 +541,9 @@ ul {
     cursor: pointer;
 }
 
+#editProfile{
+    display: none;
+}
 
 .uploadFile{
     width: 0.1px;
@@ -843,7 +557,6 @@ ul {
     font-size: 500%;
 }
 .inputEmoji{
-    box-shadow: 0.15rem 0.15rem 0 0 rgba(99, 32, 0, 0.41);
     border-radius: 15%;
     width: 6rem;
     height: 6rem;
@@ -858,66 +571,16 @@ ul {
     vertical-align: middle;
 }
 
+#makePost{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
 
 audio{
     display: none;
 }
-
-
-
-#star-five {
-  margin: 50px 0;
-  position: relative;
-  display: block;
-  color: #f0a830;
-  width: 0px;
-  height: 0px;
-  border-right: 100px solid transparent;
-  border-bottom: 70px solid #f0a830;
-  border-left: 100px solid transparent;
-  transform: rotate(36deg);
-}
-#star-five:before {
-  border-bottom: 80px solid #f0a830;
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
-  position: absolute;
-  height: 0;
-  width: 0;
-  top: -45px;
-  left: -65px;
-  display: block;
-  content: '';
-  transform: rotate(-35deg);
-}
-#star-five:after {
-  position: absolute;
-  display: block;
-  color: #f0a830;
-  top: 3px;
-  left: -105px;
-  width: 0px;
-  height: 0px;
-  border-right: 100px solid transparent;
-  border-bottom: 70px solid #f0a830;
-  border-left: 100px solid transparent;
-  transform: rotate(-72deg);
-  content: '';
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

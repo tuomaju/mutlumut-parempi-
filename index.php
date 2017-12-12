@@ -22,13 +22,13 @@
     </header>
     <aside class="indexaside">
     </aside>
-    <main class="vaalea indexmain">
+    <main class="indexmain">
         <form method="POST" action="loginConfirm.php" id="loginForm">
             <input class="indexform" type="text" name='username' placeholder="Käyttäjätunnus">
             <input class="indexform" type="password" name='pwd' placeholder="Salasana"><br>
             <div id="loginRegister">
-                <input class="indexbtn" type="submit" name="loginButton" id="loginButton" value="Kirjaudu">
-                <button class="indexbtn" ><a href="register.php">Rekisteröidy</a></button>
+                <input class="indexbtn sendCommentBtn vaalea" type="submit" name="loginButton" id="loginButton" value="Kirjaudu">
+                <button class="indexbtn sendCommentBtn vaalea" ><a href="register.php">Rekisteröidy</a></button>
             </div>
         </form>
     </main>

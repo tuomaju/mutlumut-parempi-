@@ -11,6 +11,6 @@ include_once ('functions.php');
 
 $commentId = $_REQUEST['commentId'];
 removeComment($commentId, $DBH);
-redirect('fullPost.php');
+redirect('tosiIndex.php');
 
 ?>

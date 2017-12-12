@@ -11,7 +11,6 @@ include_once ('functions.php');
 
 $profileId = $_REQUEST['profileId'];
 ?>
-
 <!doctype html>
 <html class="no-js" lang="">
 <head>
@@ -24,26 +23,76 @@ $profileId = $_REQUEST['profileId'];
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:600" rel="stylesheet">
+
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body class="tumma">
-<?php
+<div id="profileModal" class="modal">
+    <div class="modal-content profileModal oranssi">
+        <div id="profileModalMain">
+            <span id="closeProfileModal" class="closeModal">&times;</span>
+            <?php
+            include "search.php";
+            ?>
+            <div id="profile" class="vaalea">
+                <div id="searchAndProfile">
+                    <?php
+                    include "profile.php";
 
-echo '<div>';
-echo 'Nimi: ' . getProfile($profileId, $DBH)->profileName;
-echo '<br>';
-echo '<img class="profileimg" src="' . getProfile($profileId, $DBH)->img .  '">';
-echo '<br>';
-echo 'Score : '.getProfileScore($profileId, $DBH)[0];
-echo '<br>';
-echo '<button class="btn"><a href="tosiIndex.php">↩</a></button>';
-echo '</div>';
+                    ?>
+                </div>
+                <div id="editProfile">
+                    <?php
+                    include "editProfile.php";
+                    ?>
+                </div>
+                <button class="sendCommentBtn tumma" id='editProfileBtn'>Muokkaa</button>
+            </div>
+        </div>
+        <div id="profileModalFooter">
+            <button id="logOutBtn" class="sendCommentBtn vaalea"><a href="logout.php">Kirjaudu ulos</a></button>
+        </div>
+    </div>
+</div>
 
-echo '<ul>';
+<div id="makePostModal" class="modal">
+    <div class="modal-content makePostModal oranssi">
+        <span id="closePostModal" class="closeModal">&times;</span>
+        <div id="makePost">
+            <?php
+            include "makePost.php";
+            ?>
+        </div>
+    </div>
+</div>
+<header id="stickyHeader" class="tumma">
+    <img src="icons/menu.svg" id="openProfileModal">
+    <a href="tosiIndex.php">
+        <h1>tumultum</h1>
+    </a>
+
+    <img src="icons/menu2.svg" id="openMakePostModal">
+</header>
+<aside></aside>
+<main id="indexMain">
+    <?php
+
+    echo '<div id="showProfile" class="vaalea" >';
+    echo '<div id="showProfileInfo" class="vaalea" >';
+    echo '<img class="profileimg" src="' . getProfile($profileId, $DBH)->img .  '">';
+    echo '<p>' . getProfile($profileId, $DBH)->profileName.'</p>';
+    echo '<p id="profileScore" class="vaalea">'. getProfileScore($profileId, $DBH)[0].'</p>';
+    echo '</div>';
+    echo '<ul class="vaalea" id="posts">';
     showProfilePosts($profileId ,$DBH);
-echo '</ul>';
+    echo '</ul>';
+    echo '</div>';
+    ?>
+</main>
+<aside></aside>
 
-?>
 
+<script src="js/main.js"></script>
 </body>
+</html>
 

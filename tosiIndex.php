@@ -9,7 +9,7 @@ $_SESSION['search']='';
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>KORVIAHIVELEVÄ</title>
+    <title>tumultum</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -22,21 +22,29 @@ $_SESSION['search']='';
 <body class="tumma">
 <div id="profileModal" class="modal">
     <div class="modal-content profileModal oranssi">
-        <span id="closeProfileModal" class="closeModal">&times;</span>
-            <div id="searchAndProfile">
-                <?php
-                include "search.php";
-                include "profile.php";
-                echo('<button class="btn"><a href="logout.php">🚪</a></button>');
-                ?>
-            </div>
-            <div id="editProfile">
-                <?php
-                include "editProfile.php";
-                ?>
-            </div>
+        <div id="profileModalMain">
+            <span id="closeProfileModal" class="closeModal">&times;</span>
+            <?php
+            include "search.php";
+            ?>
+            <div id="profile" class="vaalea">
+                <div id="searchAndProfile">
+                    <?php
+                    include "profile.php";
 
-        <button id = 'editProfileBtn'>Muokkaa</button>
+                    ?>
+                </div>
+                <div id="editProfile">
+                    <?php
+                    include "editProfile.php";
+                    ?>
+                </div>
+                <button class="sendCommentBtn tumma" id='editProfileBtn'>Muokkaa</button>
+            </div>
+        </div>
+        <div id="profileModalFooter">
+            <button id="logOutBtn" class="sendCommentBtn vaalea"><a href="logout.php">Kirjaudu ulos</a></button>
+        </div>
     </div>
 </div>
 
@@ -55,6 +63,7 @@ $_SESSION['search']='';
     <a href="tosiIndex.php">
         <h1>tumultum</h1>
     </a>
+
     <img src="icons/menu2.svg" id="openMakePostModal">
 </header>
     <?php

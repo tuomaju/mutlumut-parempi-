@@ -10,7 +10,9 @@ include_once ("config/config.php");
 include_once ("functions.php");
 ?>
 
-<form method="post" action="tosiIndex.php">
-    <input type="text" name="emojiSearch" placeholder="anna emoji">
-    <input type="submit" value="Hae 🔍">
+<form class="searchForm" method="post" action="tosiIndex.php">
+    <!--<p>Hae emojilla: </p>-->
+    <input type="text" id="searchEmoji" class="inputEmoji" name="emojiSearch" placeholder="Hae">
+    <input type="submit" id="searchBtn" value="" name="search">
+
 </form>

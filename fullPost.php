@@ -21,7 +21,7 @@ include_once ('functions.php');
     ?>
 </ul>
 
-<div class="makeComment">
+
     <br>
 <?php
 /*
@@ -31,9 +31,7 @@ include_once ('functions.php');
 
     echo'<form class="commentForm" method="post" action="makeComment.php">';
         echo '<input type="text" hidden name="postId" value="'. $postId .'">';
-        echo '<input class="commentTextarea" type="text" name="comment" maxlength="140">';
-        echo'<br><input class="btn" type="submit" value="➠">';
+        echo '<input class="commentTextarea" type="text" name="comment" maxlength="140" placeholder="Kommentoi">';
+        echo'<input class="sendCommentBtn tumma" type="submit" value="Lähetä">';
     echo'</form>';
 ?>
-</div>
-

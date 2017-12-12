@@ -1,3 +1,5 @@
+<h2>Profiili</h2>
+
 <?php
 /**
  * Created by PhpStorm.
@@ -6,10 +8,7 @@
  * Time: 17:31
  */
 
-
-echo getProfile($_SESSION['profileId'], $DBH)->profileName;
-echo '<br>';
 echo '<img class="profileimg" src="' . getProfile($_SESSION['profileId'], $DBH)->img .  '">';
-echo '<br>';
-echo 'Suosio: '. getProfileScore($_SESSION['profileId'], $DBH)[0];
+echo '<p>'.getProfile($_SESSION['profileId'], $DBH)->profileName.'</p>';
+echo '<p id="profileScore" class="vaalea">'. getProfileScore($_SESSION['profileId'], $DBH)[0].'</p>';
 ?>

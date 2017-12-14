@@ -4,21 +4,40 @@ const profileModalBtn = document.getElementById('openProfileModal');
 const closeProfileModal = document.getElementById('closeProfileModal');
 const indexMain = document.querySelector('body');
 
+
+const modal = document.querySelectorAll('.modal');
+
+
+
 profileModalBtn.addEventListener('click', () => {
-  profileModal.style.display = "block";
-  indexMain.style.overflow = 'hidden';
+    profileModal.style.animationName ='slideIn';
+    modal[0].style.animationName = 'fadeIn';
+    modal[0].style.display = "block";
+    indexMain.style.overflow = 'hidden';
+
 });
 
 closeProfileModal.addEventListener('click', () => {
-  profileModal.style.display = "none";
-  indexMain.style.overflow = 'auto';
+    setTimeout( () => {
+        modal[0].style.display = "none";
+        indexMain.style.overflow = 'auto';
+        profileModal.style.animationName ='slideIn';
+    }, 380);
+    profileModal.style.animationName ='slideOut';
+    modal[0].style.animationName = 'fadeOut'
 });
 
 window.addEventListener('click', (evt) => {
-  if (evt.target === profileModal){
-    indexMain.style.overflow = 'auto';
-    profileModal.style.display = "none";
-  }
+    if (evt.target === modal[0]){
+        setTimeout( () => {
+            modal[0].style.display = "none";
+            indexMain.style.overflow = 'auto';
+            profileModal.style.animationName ='slideIn';
+            modal[0].style.animationName = 'fadeIn'
+        }, 380);
+        profileModal.style.animationName ='slideOut';
+        modal[0].style.animationName = 'fadeOut'
+    }
 });
 
 const editProfileBtn = document.getElementById('editProfileBtn');
@@ -36,27 +55,45 @@ const makePostModal = document.getElementById('makePostModal');
 const postModalBtn = document.getElementById('openMakePostModal');
 const closePostModal = document.getElementById('closePostModal');
 
+
+
+
+
+
 postModalBtn.addEventListener('click', () => {
-  makePostModal.style.display = "block";
-  indexMain.style.overflow = 'hidden';
+    makePostModal.style.animationName ='slideInR';
+    modal[1].style.animationName = 'fadeIn';
+    modal[1].style.display = "block";
+    indexMain.style.overflow = 'hidden';
 });
 
 closePostModal.addEventListener('click', () => {
-  makePostModal.style.display = "none";
-  indexMain.style.overflow = 'auto';
+    setTimeout( () => {
+        modal[1].style.display = "none";
+        indexMain.style.overflow = 'auto';
+        makePostModal.style.animationName ='slideInR';
+    },380);
+    makePostModal.style.animationName ='slideOutR';
+    modal[1].style.animationName = 'fadeOut'
+
 });
 
 window.addEventListener('click', (evt) => {
-  if (evt.target === makePostModal){
-   makePostModal.style.display = "none";
-    indexMain.style.overflow = 'auto';
-  }
+    if (evt.target === modal[1]){
+        setTimeout( () => {
+            modal[1].style.display = "none";
+            indexMain.style.overflow = 'auto';
+            makePostModal.style.animationName ='slideInR';
+        }, 380);
+        makePostModal.style.animationName ='slideOutR';
+        modal[1].style.animationName = 'fadeOut'
+    }
 });
 
-const postit = document.querySelectorAll('.posts');
+const postit = document.querySelectorAll('.postsBox');
 
 
-postit.forEach((post) => {
+postit.forEach((post, i) => {
   let playbtn = post.querySelector('.playbtn');
   let audio = post.querySelector('audio');
   let pausebtn = post.querySelector('.pausebtn');
@@ -64,6 +101,20 @@ postit.forEach((post) => {
   let showMore = post.querySelector('.postFooter');
   let fullPost = post.querySelector('.fullPostModal');
   let comments = document.querySelector('.comments');
+    let date = post.querySelector('.dateBreak');
+
+
+    if ((i <= postit.length) && i-1 > 0){
+        if(postit[i].querySelector('.postDate').innerHTML !== postit[i-1].querySelector('.postDate').innerHTML){
+            console.log(postit[i].querySelector('.postDate').innerHTML);
+
+            date.innerHTML = postit[i].querySelector('.postDate').innerHTML;
+        }
+    } else if(i === 0){
+        console.log(postit[i].querySelector('.postDate').innerHTML);
+        date.innerHTML = postit[i].querySelector('.postDate').innerHTML;
+    }
+
 
 
   playbtn.addEventListener('click', () => {
@@ -94,22 +145,9 @@ postit.forEach((post) => {
 
   
 
-  console.log(audio.duration);
+  //console.log(audio.duration);
 
-              /*
-  let textArea = document.querySelector('.commentTextarea');
-  let commentForm = document.querySelector('.commentForm');
 
-  textArea.addEventListener('focus', (evt) => {
-
-    textArea.addEventListener('keyup', (evt) => {
-              if (evt.keyCode === 13){
-                console.log('moi');
-                evt.preventDefault();
-                commentForm.submit();
-              }
-  })});
-      */
  });
 
 

@@ -1,41 +1,15 @@
 <?php
  session_start();
 ?>
-
-<!doctype html>
-<html class="no-js" lang="">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>KORVIAHIVELEVÄ</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:600" rel="stylesheet">
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-</head>
-<body class="sininen">
-
-<fieldset>
-    <form action="confirm.php" method="post">
-
-    <input type="text" name="data[username]" placeholder="Käyttäjätunnus" required>
-    <br>
-    <input type="email" name="data[email]" placeholder="Sähköposti" required>
-    <br>
-    <input type="password" name="data[pwd]" placeholder="Salasana" required>
-    <br>
-    <input type="submit" value="Tallenna">
+<form id="registerForm" action="confirm.php" method="post">
+    <input class="indexform" type="text"  name="data[username]" placeholder="Käyttäjätunnus" required>
+    <input class="indexform" type="email" name="data[email]" placeholder="Sähköposti" required>
+    <input class="indexform" type="password" name="data[pwd]" placeholder="Salasana" required>
+    <input id="registerSubmit" class="indexbtn sendCommentBtn vaalea" type="submit" value="Tallenna">
 </form>
-</fieldset>
-<?php
-    echo $_SESSION['laiton'];
 
+<?php
+echo $_SESSION['laiton'];
 ?>
 
-<script src="js/main.js"></script>
-</body>
-</html>
+

@@ -1,6 +1,7 @@
 <?php
     session_start();
 ?>
+
 <!doctype html>
 <html class="no-js" lang="">
 <head>
@@ -18,7 +19,7 @@
 
 <body class="tumma indexbody">
     <header class="indexheader">
-        <h1>tumultum</h1>
+        <h1 ><a href="index.php">tumultum</a></h1>
     </header>
     <aside class="indexaside">
     </aside>
@@ -28,12 +29,19 @@
             <input class="indexform" type="password" name='pwd' placeholder="Salasana"><br>
             <div id="loginRegister">
                 <input class="indexbtn sendCommentBtn vaalea" type="submit" name="loginButton" id="loginButton" value="Kirjaudu">
-                <button class="indexbtn sendCommentBtn vaalea" ><a href="register.php">Rekisteröidy</a></button>
+                <button type="button" id="registerBtn" class="indexbtn sendCommentBtn vaalea" >Rekisteröidy</button>
             </div>
         </form>
+
+        <div id="register">
+            <?php
+                include 'register.php';
+            ?>
+        </div>
     </main>
     <aside class="indexaside">
     </aside>
 
+<script src="js/register.js"></script>
 </body>
 </html>

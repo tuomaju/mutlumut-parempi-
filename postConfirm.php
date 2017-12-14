@@ -9,16 +9,14 @@ $uploadOk = 1;
 $audioFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 $newFile = $target_dir . uniqid() . '.' . $audioFileType;
 
-// Check if image file is a actual image or fake image
-echo '1';
+// Check if image file is a actual audio or fake audio
 if(isset($_POST["submit"])) {
-    echo '2';
     $check = filesize($_FILES["upload"]["tmp_name"]);
     if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
+        echo "File is an audio - " . $check["mime"] . ".";
         $uploadOk = 1;
     } else {
-        echo "File is not an image.";
+        echo "File is not an audio.";
         $uploadOk = 0;
     }
 }

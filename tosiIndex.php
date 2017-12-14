@@ -20,8 +20,8 @@ $_SESSION['search']='';
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body class="tumma">
-<div id="profileModal" class="modal">
-    <div class="modal-content profileModal oranssi">
+<div class="modal">
+    <div id="profileModal"  class="profileModal oranssi">
         <div id="profileModalMain">
             <span id="closeProfileModal" class="closeModal">&times;</span>
             <?php
@@ -31,7 +31,6 @@ $_SESSION['search']='';
                 <div id="searchAndProfile">
                     <?php
                     include "profile.php";
-
                     ?>
                 </div>
                 <div id="editProfile">
@@ -48,8 +47,8 @@ $_SESSION['search']='';
     </div>
 </div>
 
-<div id="makePostModal" class="modal">
-    <div class="modal-content makePostModal oranssi">
+<div class="modal">
+    <div  id="makePostModal" class="makePostModal oranssi">
         <span id="closePostModal" class="closeModal">&times;</span>
         <div id="makePost">
             <?php
@@ -74,43 +73,13 @@ $_SESSION['search']='';
 <aside></aside>
 <main id="indexMain">
     <ul id="posts">
-        <!--
-        <li>
-            <?php /*
-            $mystring= json_encode(🍑);
-            $newstring = str_replace('\\','\\\\',$mystring); // +1 backslash, että voi escapee
-
-            $muuttuva = getPost(3, $DBH)->emoji1;
-            echo json_decode(''.$muuttuva.'');
-            ?>
-        </li>
-        <li>
-            <?php
-                $profileId = $_SESSION['profileId'];
-               // makePost('posts/testi1.mp3', '😂', '🔥','🐻','🍑', $profileId, $DBH); //tää toimii ;^) (ihan oikeesti ( ei oo läppä ))
-                echo decodeEmoji(5, 'emoji1',$DBH);
-            ?>
-        </li>
-        <li>
-            <?php
-                echo '<img class="profileimg" src=" '.getPost(8, $DBH)->audio.'">';
-                echo decodeEmoji(8, 'emoji1', $DBH);
-                echo decodeEmoji(8, 'emoji4', $DBH);
-                echo decodeEmoji(8, 'emoji3', $DBH);
-                echo decodeEmoji(8, 'emoji2', $DBH);
-            */?>
-        </li>
-        -->
         <?php
             if($_POST['emojiSearch']){
                 $_SESSION['search'] = $_POST['emojiSearch'];
             }
             showPosts(getMaxId('postId', 'p_post', $DBH)[0],$_SESSION['search'], $DBH);
             $_SESSION['search']='';
-                //var_dump(getMaxId($DBH));
-                //echo getMaxId($DBH)[0];
         ?>
-
     </ul>
 </main>
 <aside></aside>
@@ -118,7 +87,6 @@ $_SESSION['search']='';
     }else{
         echo'Olet kirjautunut ulos.';
         echo('<button><a href="index.php">Etusivulle</a></button>');
-
     }
 ?>
 <script src="js/main.js"></script>

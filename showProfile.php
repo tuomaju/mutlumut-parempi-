@@ -11,6 +11,7 @@ include_once ('functions.php');
 
 $profileId = $_REQUEST['profileId'];
 ?>
+
 <!doctype html>
 <html class="no-js" lang="">
 <head>
@@ -27,8 +28,8 @@ $profileId = $_REQUEST['profileId'];
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body class="tumma">
-<div id="profileModal" class="modal">
-    <div class="modal-content profileModal oranssi">
+<div class="modal">
+    <div id="profileModal" class="modal-content profileModal oranssi">
         <div id="profileModalMain">
             <span id="closeProfileModal" class="closeModal">&times;</span>
             <?php
@@ -38,7 +39,6 @@ $profileId = $_REQUEST['profileId'];
                 <div id="searchAndProfile">
                     <?php
                     include "profile.php";
-
                     ?>
                 </div>
                 <div id="editProfile">
@@ -55,8 +55,8 @@ $profileId = $_REQUEST['profileId'];
     </div>
 </div>
 
-<div id="makePostModal" class="modal">
-    <div class="modal-content makePostModal oranssi">
+<div class="modal">
+    <div id="makePostModal" class="modal-content makePostModal oranssi">
         <span id="closePostModal" class="closeModal">&times;</span>
         <div id="makePost">
             <?php
@@ -76,21 +76,19 @@ $profileId = $_REQUEST['profileId'];
 <aside></aside>
 <main id="indexMain">
     <?php
-
-    echo '<div id="showProfile" class="vaalea" >';
-    echo '<div id="showProfileInfo" class="vaalea" >';
-    echo '<img class="profileimg" src="' . getProfile($profileId, $DBH)->img .  '">';
-    echo '<p>' . getProfile($profileId, $DBH)->profileName.'</p>';
-    echo '<p id="profileScore" class="vaalea">'. getProfileScore($profileId, $DBH)[0].'</p>';
-    echo '</div>';
-    echo '<ul class="vaalea" id="posts">';
-    showProfilePosts($profileId ,$DBH);
-    echo '</ul>';
-    echo '</div>';
+        echo '<div id="showProfile" class="vaalea" >';
+        echo '<div id="showProfileInfo" class="vaalea" >';
+        echo '<img class="profileimg" src="' . getProfile($profileId, $DBH)->img .  '">';
+        echo '<p>' . getProfile($profileId, $DBH)->profileName.'</p>';
+        echo '<p id="profileScore" class="vaalea">'. getProfileScore($profileId, $DBH)[0].'</p>';
+        echo '</div>';
+        echo '<ul class="vaalea" id="posts">';
+        showProfilePosts($profileId ,$DBH);
+        echo '</ul>';
+        echo '</div>';
     ?>
 </main>
 <aside></aside>
-
 
 <script src="js/main.js"></script>
 </body>

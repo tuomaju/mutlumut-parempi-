@@ -16,22 +16,7 @@ if($_POST['profileImg']) {
 if($_POST['profileName']) {
     editProfile($_SESSION['userId'], 'profileName', $_POST['profileName'], $DBH);
 }
-/*
- * js
- * button.onClick= ()=>{
- *  my_var = ´<?php editProfile($_SESSION['userId'], 'img', '${jsMuuttuja}', $DBH); ?>;
- *  element.innerHTML = my_var
- * }
- *
- *
-    let my_var = ´<?php editProfile($_SESSION['userId'], 'img', '${jsMuuttuja}', $DBH); ?>;
 
-
-
-backup plan: jos ei js toimi, tehään omat tiedostot kaikille kuville
-
-
- */
 redirect('tosiIndex.php');
 
 ?>

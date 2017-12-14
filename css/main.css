@@ -1,7 +1,7 @@
 /*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
 
 html {
-    color: #222;
+    color: #000000;
     font-size: 1em;
     line-height: 1.4;
 }
@@ -59,7 +59,7 @@ textarea {
 body {
     font-family: 'Nunito', sans-serif;
     font-size: 150%;
-    color: #1C2021;
+    color: #000000;
     display: flex;
     flex-wrap: wrap;
        overflow: auto;
@@ -103,7 +103,7 @@ header{
 }
 
 #indexMain {
-    margin-top: 5.5rem;
+    margin-top: 5.8rem;
      flex-direction: column;
          align-items: center;
 }
@@ -138,6 +138,14 @@ index
     width:100%;
     text-align: center;
 }
+.indexheader a{
+    text-decoration: none;
+    font-size: 4rem;
+    color: #FFF0D6;
+    margin:0;
+    cursor: pointer;
+}
+
 .indexmain {
     border-radius: 39.5px;
     display: flex;
@@ -164,6 +172,29 @@ aside {
 
 .oranssi {
     background-color:#F0A830;
+}
+
+#registerForm{
+    padding:0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+#register{
+    display: none;
+    padding:0;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#register .indexbtn{
+    margin-top: 2rem;
 }
 
 
@@ -236,9 +267,6 @@ button a{
 }
 
 .adminBtn{
-
-    -webkit-border-radius: 5;
-    -moz-border-radius: 5;
     border-radius: 5px;
     font-family: Georgia;
     color: #000dff;
@@ -266,7 +294,7 @@ button a{
     display: flex;
 }
 
-.commentForm input{
+.commentForm input[type=text]{
     padding: 0 0.7rem;
 }
 
@@ -347,7 +375,12 @@ ul {
 
 }
 
+.postsBox {
+    margin: 0;
+}
+
 .posts {
+    margin-top: 1.25rem;
     height: auto;
     border-radius: 43.5px;
     border: 4px solid #f0a830;
@@ -369,7 +402,6 @@ ul {
 .emoji{
     box-shadow: 0.15rem 0.15rem 0 0 rgba(99, 32, 0, 0.41);
     font-size: 4rem;
-    margin: 1rem;
     display: inline-block;
     width: 5.5rem;
     height: 5.5rem;
@@ -377,6 +409,8 @@ ul {
     vertical-align: middle;
     line-height: 6.5rem;
     border-radius: 15%;
+    margin: 1rem;
+
 
 }
 
@@ -459,22 +493,43 @@ ul {
 
 .postHeader{
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: -1.5rem;
 }
 
+.profileImgBox {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.dateBreak{
+    text-align: center;
+    margin-top: 1.3rem;
+    margin-bottom: 0.5rem;
+    padding: 0;
+    color: #FFF0D6;
+}
+
+.postDate{
+    display: none;
+}
+
 .postTime{
+    text-align: right;
     height: inherit;
     margin-right: 2rem;
 }
 
 
 .playbtnBox{
-    width: 20%;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
 }
 
 .playbtn {
@@ -496,14 +551,15 @@ ul {
 }
 
 .counter {
+    margin: 0;
     display: flex;
 }
 
 .postMain{
     margin:0;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-wrap: nowrap;
+    justify-content: space-evenly ;
     align-items: center;
 }
 
@@ -517,17 +573,18 @@ ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width:60%;
+
 }
 
 .postLike{
-    width:20%;
+    margin-right: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-flow: column wrap;
     align-content: stretch;
 }
+
 
 
 
@@ -543,7 +600,15 @@ ul {
     height: 100%; /* Full height */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0, 0, 0, 0.51); /* Black w/ opacity */
+
+
+    animation-name: fadeIn;
+    animation-duration: 0.4s;
+
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 0.4s
 }
+
 
 /* Modal Content */
 .modal-content {
@@ -552,17 +617,32 @@ ul {
     padding: 20px;
     width: 60%;
     height: inherit;
+
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+
+    animation-name: slideIn;
+    animation-duration: 0.4s
       
 }
 
 .profileModal{
-
+    left: 0;
     height: 100%;
     box-shadow: 0.2rem 0 0 0 rgba(99, 32, 0, 0.41);
-   
-    padding: 0;
     flex-direction: column;
     align-items: center;
+    overflow: auto;
+    position: absolute;
+    padding: 20px;
+    width: 60%;
+
+
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+
+    animation-name: slideIn;
+    animation-duration: 0.4s
  
 }
 
@@ -632,6 +712,10 @@ ul {
     margin-bottom: 0;
 }
 
+
+#showProfile .dateBreak {
+    color:#9E3E25;
+}
 
 #profile p {
     font-size: 125%;
@@ -750,12 +834,23 @@ ul {
 
 
 .makePostModal{
+    height: 100%;
     box-shadow: -0.2rem 0 0 0 rgba(99, 32, 0, 0.41);
     right: 0;
-    top: 0;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    overflow: auto;
+    position: absolute;
+    padding: 20px;
+    width: 60%;
+
+
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+
+    animation-name: slideIn;
+    animation-duration: 0.4s
 }
 
 .makePostModal label{
@@ -794,6 +889,13 @@ ul {
     flex-wrap: wrap;
     justify-content: center;
 }
+
+#emojiContainerMakepost{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 
 .makePostSubmit{
     display: flex;
@@ -914,9 +1016,44 @@ audio{
 
 
 
+@keyframes slideIn {
+    from {left: -60%;}
+    to {left: 0;}
+}
+@keyframes slideOut {
+    from {left: 0;}
+    to {left: -70%;}
+}
+
+
+@keyframes slideInR {
+    from {right: -60%;}
+    to {right: 0;}
+}
+@keyframes slideOutR {
+    from {right: 0;}
+    to {right: -70%;}
+}
+
+
+@keyframes fadeIn {
+    from {background-color: rgba(0,0,0, 0.00);}
+    to {background-color: rgba(0,0,0, 0.51);}
+}
+@keyframes fadeOut {
+    from {background-color: rgba(0,0,0, 0.51);}
+    to {background-color: rgba(0,0,0, 0.00);}
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
 
 
 
+*:focus {
+    outline: none;
+}
 
 
 
@@ -951,6 +1088,178 @@ audio{
     }
 
 }
+
+
+@media only screen and (max-width: 668px) {
+
+
+
+    main {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #profileModal {
+        width: 80%;
+    }
+
+    #profileModalMain{
+        min-width: auto;
+    }
+    #profile {
+        padding:0 ;
+        font-size: 70%;
+        width: 100%;
+        margin: 1.5rem 0;
+    }
+
+    #profile p{
+        font-size: 1.5rem;
+    }
+
+    #profile h2{
+        margin: 1rem auto 1rem auto;
+
+    }
+
+    .searchForm {
+        margin-top: 0;
+        margin-left: 3rem;
+    }
+
+
+    #searchEmoji{
+        width: 4rem;
+        height: 4rem;
+        font-size: 3rem;
+    }
+
+    #searchBtn{
+        margin-left: 0.5rem;
+        width: 2rem;
+        height: 2rem;
+    }
+
+    #makePostModal {
+        width: 80%;
+    }
+    #makePost h2{
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    #showProfile{
+        margin-top: 2rem;
+        width: 95%;
+        padding: 1rem 0;
+    }
+
+
+    #indexMain{
+        margin-top: 4.4rem;
+    }
+
+
+
+    .postMain{
+        justify-content:space-evenly;
+        flex-wrap: wrap;
+
+    }
+
+
+
+    .postHeader{
+        margin-bottom: 0;
+    }
+
+    .dateBreak{
+        margin-top: 1.3rem;
+    }
+
+
+    .playbtnBox{
+        order: 2;
+    }
+
+    .playbtnBox img{
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .postLike a img {
+        width: 3rem ;
+        height: 3rem;
+    }
+
+
+    .emojiContainer{
+        order: 1;
+        justify-content: space-evenly;
+        flex-wrap: nowrap;
+        width: 95%;
+    }
+
+    .emoji{
+        width: 4rem;
+        height: 4rem;
+        margin: 0.5rem;
+        font-size: 2.0rem;
+        line-height: 3.1rem;
+    }
+
+    .postLike {
+        order: 3;
+    }
+
+
+    .comment {
+        margin: 0.5rem 0;
+        width: 95%;
+    }
+
+
+
+    .commentForm{
+        width: 95%;
+    }
+
+    header h1{
+        font-size: 3rem;
+    }
+
+    header img{
+        width: 3rem;
+        height: 3rem;
+    }
+
+
+
+    @keyframes slideIn {
+        from {left: -80%;}
+        to {left: 0;}
+    }
+    @keyframes slideOut {
+        from {left: 0;}
+        to {left: -90%;}
+    }
+
+
+    @keyframes slideInR {
+        from {right: -80%;}
+        to {right: 0;}
+    }
+    @keyframes slideOutR {
+        from {right: 0;}
+        to {right: -90%;}
+    }
+
+
+
+}
+
+
 
 @media print,
        (-o-min-device-pixel-ratio: 5/4),

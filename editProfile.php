@@ -2,10 +2,6 @@
 session_start();
 include_once ('config/config.php');
 include_once ('functions.php');
-
-
-//echo '<button class="btn"><a href="tosiIndex.php">↩</a></button>';
-
 ?>
 
 <?php
@@ -17,8 +13,8 @@ include_once ('functions.php');
     echo '<p>Nimi: ' . getProfile($_SESSION['profileId'], $DBH)->profileName.'</p>';
     echo '<p>Suosio: '.getProfileScore($_SESSION['profileId'], $DBH)[0] .'</p>';
     echo '</div>';
-
 ?>
+
 <br>
 <form class="editProfileForm" method="POST" action="ediProfileConfirm.php">
     <input id="giveName" type="text" name="profileName" placeholder="Anna uusi nimi" maxlength="15">

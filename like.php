@@ -18,5 +18,4 @@ addLike($postId, $_SESSION['profileId'], 1, $DBH);
 
 redirect('tosiIndex.php');
 
-
 ?>
